@@ -15,9 +15,34 @@
             document.getElementById('navbar').innerHTML = '<object type="text/html" data="navbar.html" width="1000"></object>';
         </script>
         
-        <div id = "logo">
-            <a id = "innerimginside" href="../index.html"><img src="../images/mnp-logo.png" id = "innerimg"></a>
-            <img src="../images/home_mnp.png" id = "topcoverimg">
+        <div id="logo">
+            <a id="innerimginside" href="../index.html"><img src="../images/mnp-logo.png" id="innerimg"></a>
+            <img src="../images/banner.jpeg" id="topcoverimg">
+        </div>
+    
+        <div class="dark-mode-toggle-container">
+        <span class="toggle-icon sun-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        </span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+        <span class="toggle-icon moon-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        </span>
         </div>
         <div id = "titlecontent">
             <div id = "titl">
@@ -122,19 +147,19 @@
         </div>
 
         <hr>
-        <div id = "footer">
-            <span>
-                © 2024 Maths And Physics Club.
-            </span>
+        <div id="footer">
+      <span>
+        © 2025 Maths And Physics Club. All rights reserved.
+      </span>
+    </div>
+    <div id="footer2">
+      <div id="social-icons">
+        <a class="icon" href="https://instagram.com/mnpclub.iitb" title="Maths And Physics Club on Instagram" target="_blank"><img class="fa" src="../images/instagram.png"></a>
+        <a class="icon" href="https://www.linkedin.com/company/maths-and-physics-club-iit-bombay/" title="Maths And Physics Club on LinkedIn" target="_blank"><img class="fa" src="../images/linkedin.png"></a>
+        <a class="icon" href="https://youtube.com/@mathsnphysics1729?si=X2nIRp-37eYap0oK" title="Maths And Physics Club on Youtube" target="_blank"><img class="fa" src="../images/yt.png"></a>
+        <a class="icon" href="https://github.com/mnp-club" title="Maths And Physics Club on Github" target="_blank"><img class="fa" src="../images/github.png"></a>
+      </div>
         </div>
-        <div id = "footer2">
-            <div id="social-icons">
-                <a class = "icon" href="https://facebook.com/mnpiitb" title="Maths And Physics Club on Facebook" target="_blank"><img class="fa" src = "../images/facebook.png"></a>
-                <a class = "icon" href="https://instagram.com/mnpclub.iitb" title="Maths And Physics Club on Instagram" target="_blank"><img class="fa" src = "../images/instagram.png"></a>
-                <a class = "icon" href="https://github.com/mnp-club" title="Maths And Physics Club on Github" target="_blank"><img class="fa" src = "../images/github.png"></a>
-            </div>
-        </div>
-
+        <script src="../index.js"></script>
     </body>
-	<script src="index.js"></script>
 </html>

@@ -2,29 +2,122 @@ html, body {
     padding: 0;
     margin: 0;
 }
+:root {
+    --nav-bg-color: #000000;     
+    --nav-text-color: #ffffff;     
+    --nav-hover-bg: #1a1a1a;       
+    --nav-hover-shadow: 0 0 1px #fff; 
+    --text-color: #333333; 
+    --team-title-color: #000000; 
+    --name-color: #333333; 
+    --position-color: #555555;
+}
 
-body{
+.dark-mode {
+    background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* Blog Posts */
+.dark-mode #titlecontent,
+.dark-mode .postlink {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dark-mode .posttitle {
+  color: #ffffff;
+}
+
+.dark-mode .postdate {
+  color: #aaaaaa;
+}
+
+.dark-mode hr {
+  background-color: #333;
+}
+
+/* Events */
+.dark-mode #event {
+  background-color: #2d2d2d;
+  border-color: #444;
+}
+
+.dark-mode #eventdatedd {
+  background-color: #333;
+  color: white;
+  border-color: #555;
+}
+
+.dark-mode #eventdatemmyy {
+  background-color: #1a2a4a;
+}
+
+/* Team Section */
+.dark-mode #teamtitle,
+.dark-mode #Name,
+.dark-mode #position {
+  color: white;
+}
+
+.dark-mode .managerimg {
+  border-color: #444;
+}
+
+/* SOS Section */
+.dark-mode #soshref,
+.dark-mode #soshref2 {
+  background-color: #1e1e1e;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+.dark-mode #soshref2 {
+  background-color: #2a2a2a;
+}
+
+.dark-mode #sosimg {
+  border-right-color: #444;
+}
+
+/* Footer */
+.dark-mode #footer,
+.dark-mode #a1 {
+  color: #aaa;
+}
+
+/* Social Icons (Optional) */
+.dark-mode .fa {
+  filter: invert(0.8);
+}
+
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-#nav-top{
+#nav-top {
     height: 94px;
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: var(--bg-color); 
 }
 
-#black-cont{
+#black-cont {
     width: auto;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: row;
-    background-color: black;
+    background-color: var(--nav-bg-color);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     animation-duration: 1s;
@@ -34,8 +127,8 @@ body{
     transition: all 0.2s ease;
 }
 
-.topic{
-    color: white;
+.topic {
+    color: var(--nav-text-color);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     text-decoration: none;
@@ -45,11 +138,12 @@ body{
     align-items: center;
     padding-left: 8px;
     padding-right: 8px;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.topic:hover{
-    box-shadow: inset 0 0 1px #fff;
-    background-color: #1a1a1a;
+.topic:hover {
+    box-shadow: var(--nav-hover-shadow);
+    background-color: var(--nav-hover-bg);
     border-radius: 5px;
 }
 
@@ -108,6 +202,95 @@ body{
     width: 100%;
     z-index: 0;
 }
+
+.dark-mode-toggle-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0 15px;
+  gap: 8px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
+}
+
+.sun-icon {
+  color: #ffb300; /* Sunny yellow */
+}
+
+.moon-icon {
+  color: #bb86fc; /* Soft purple */
+}
+
+/* Optional animation on toggle */
+.dark-mode-toggle-container:hover .sun-icon {
+  transform: rotate(15deg);
+}
+
+.dark-mode-toggle-container:hover .moon-icon {
+  transform: scale(1.1);
+}
+
+/* Make the icons adapt to dark mode */
+.dark-mode .sun-icon {
+  color: #ffca28; /* Brighter yellow in dark mode */
+}
+
+.dark-mode .moon-icon {
+  color: #ffffff; /* Pure white in dark mode */
+}
+
 
 #titlecontent{
     display: flex;
@@ -568,4 +751,121 @@ hr {
         transform: translateY(0);
     }
 } 
+/* Team section specific styles */
+#teamtitle {
+    color: var(--team-title-color);
+}
 
+#Name {
+    color: var(--name-color);
+}
+
+#position {
+    color: var(--position-color);
+}
+
+/* Make sure all text elements inherit the color */
+#teams, #team, #row, #member {
+    color: inherit;
+}
+/* ===== Dark Mode for Events Table ===== */
+.dark-mode #events-table {
+  color: #e0e0e0; /* Light gray text */
+}
+
+.dark-mode #events-table th {
+  background-color: #1a1a1a; /* Dark header */
+  color: white;
+  border-bottom: 2px solid #3a3a3a; /* Slightly lighter border */
+}
+
+.dark-mode #events-table td {
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.dark-mode #events-table tr:hover {
+  background-color: #2a2a2a; /* Subtle hover */
+}
+
+.dark-mode #events-table a {
+  color: #4d8bf0; /* Blue links */
+}
+
+.dark-mode #events-table a:hover {
+  color: #6ba1f7; /* Lighter blue on hover */
+  text-decoration: underline;
+}
+
+
+/* === Dark Mode Overrides === */
+.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+.dark-mode .navbar,
+.dark-mode .carousel,
+.dark-mode #footer,
+.dark-mode .card {
+    background-color: #1e1e1e !important;
+    color: white !important;
+}
+
+.dark-mode .btn {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
+.dark-mode .card,
+.dark-mode .navbar,
+.dark-mode .carousel,
+.dark-mode #footer {
+    border-color: #2c2c2c !important;
+    box-shadow: none !important;
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+    color: #bbb;
+}
+
+.dark-mode a {
+    color: #80cbc4;
+}
+
+.dark-mode a:hover {
+    color: #a5d6a7;
+}
+
+/* Light Mode (original colors + hover) */
+.fa {
+  filter: none !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease;
+}
+
+.fa:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Dark Mode (same colors + hover) */
+.dark-mode .fa {
+  filter: none !important;
+  opacity: 1 !important;
+  /* Keep original colors */
+}
+
+.dark-mode .fa:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+  /* Identical hover effect */
+}
