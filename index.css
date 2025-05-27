@@ -11,11 +11,15 @@ html, body {
     --team-title-color: #000000; 
     --name-color: #333333; 
     --position-color: #555555;
+    --track-color: rgba(0, 0, 0, 0.1);
+    --dot-color: #00ffff;
 }
 
 .dark-mode {
     background-color: #121212;
   color: #e0e0e0;
+    --track-color: rgba(255, 255, 255, 0.1);
+  --dot-color: #00ffff;
 }
 
 /* Blog Posts */
@@ -388,12 +392,11 @@ hr {
     filter: none;
 }
 
-/* ===== BLOG CONTENT ===== */
-#blogcontent {
+#blogcontent{
     max-width: 47.5em;
 }
 
-.post {
+.post{
     font-size: 1.125rem;
     line-height: 1.3333333333;
     font-family: Arial, Helvetica, sans-serif;
@@ -402,7 +405,7 @@ hr {
     flex-direction: column;
 }
 
-.posttitledate {
+.posttitledate{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -410,12 +413,12 @@ hr {
     width: 100%;
 }
 
-.postdate {
+.postdate{
     font-size: .875rem;
     line-height: 1.1428571429;
 }
 
-.postcontent {
+.postcontent{
     width: 70%;
     font-size: .875rem;
     line-height: 1.1428571429;
@@ -426,11 +429,11 @@ hr {
     color: black;
 }
 
-#mnptextspace {
+#mnptextspace{
     margin-top: 200px;
 }
 
-#mnptext2 {
+#mnptext2{
     font-style: italic;
     font-size: 1.25rem;
     line-height: 1.2;
@@ -440,104 +443,15 @@ hr {
     font-weight: 400;
 }
 
-#blogdate {
+#blogdate{
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 2.5rem;
 }
 
-#blogperson {
+#blogperson{
     margin-top: 1rem;
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 1rem;
-}
-
-/* ===== BLOG TABLES ===== */
-.postcontent table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 0.875rem;
-    overflow-x: auto;
-    display: block;
-    scrollbar-width: thin; /* Firefox */
-}
-
-.postcontent table::-webkit-scrollbar {
-    height: 6px;
-    width: 6px;
-}
-
-.postcontent table::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 3px;
-}
-
-.postcontent table::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 3px;
-}
-
-.postcontent table::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-}
-
-.postcontent table th {
-    background-color: #f0f2f5;
-    color: #2d3748;
-    font-weight: 600;
-    padding: 0.75rem 1rem;
-    text-align: left;
-    border-bottom: 2px solid #e2e8f0;
-}
-
-.postcontent table td {
-    padding: 0.625rem 1rem;
-    border-bottom: 1px solid #edf2f7;
-    color: #4a5568;
-}
-
-.postcontent table tr:last-child td {
-    border-bottom: none;
-}
-
-.postcontent table tr:hover td {
-    background-color: #f8fafc;
-}
-
-/* Dark Mode Styles */
-.dark-mode .postcontent table {
-    scrollbar-color: #4a5568 #2d3748; /* Firefox */
-}
-
-.dark-mode .postcontent table::-webkit-scrollbar-track {
-    background: #2d3748;
-}
-
-.dark-mode .postcontent table::-webkit-scrollbar-thumb {
-    background: #4a5568;
-}
-
-.dark-mode .postcontent table::-webkit-scrollbar-thumb:hover {
-    background: #718096;
-}
-
-.dark-mode .postcontent table th {
-    background-color: #1a202c;
-    color: #e2e8f0;
-    border-bottom-color: #2d3748;
-}
-
-.dark-mode .postcontent table td {
-    color: #cbd5e0;
-    border-bottom-color: #2d3748;
-}
-
-.dark-mode .postcontent table tr:hover td {
-    background-color: #252f3f;
-}
-
-.dark-mode .postlink {
-    color: #e2e8f0;
 }
 
 #vision{
@@ -996,4 +910,58 @@ hr {
   transform: scale(1.1);
   opacity: 0.9;
   /* Identical hover effect */
+}
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: var(--preloader-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black; /* Or use prefers-color-scheme */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#preloader svg path {
+  stroke: var(--preloader-stroke);
+  filter: drop-shadow(0 0 6px var(--preloader-stroke));
+}
+
+.dark-mode #preloader {
+  --preloader-bg: #0f0f0f;
+}
+
+.infinity-loader {
+  width: 200px;
+  height: 200px;
+}
+
+.dot {
+  fill: var(--dot-color);
+  filter: url(#glow);
+  opacity: 0.9;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { r: 5; }
+  50% { r: 7; }
 }
