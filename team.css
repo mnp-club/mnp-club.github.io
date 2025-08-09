@@ -1,0 +1,153 @@
+:root {
+  --frost-power: 0px; /* adjust this for changing the power of the frosted glass thingy */
+}
+
+.team {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 0;
+    background-color: #000000;
+    position: relative;
+    z-index: 0;
+}
+
+/* .team {
+  background-color: #0f0f0f;
+  background-image: url("images/starfield.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  z-index: 0;
+} */
+
+.team .container {
+    margin-top: 25px;
+    margin-bottom: 65px;
+}
+
+.team-box-container {
+  display: block;
+  background-color: rgba(28, 26, 36, 0.7); /* original color with alpha */
+  padding: 30px;
+  border-radius: 75px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(33, 136, 255, 0.1);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 70px auto;
+  background-image: url("images/starfield.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: overlay;
+  padding-bottom: 100px;
+
+  /* Frosted glass */
+  backdrop-filter: blur(var(--frost-power));
+  -webkit-backdrop-filter: blur(var(--frost-power));
+}
+
+.team-box-container:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transform: translateY(-5px);
+}
+
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.team-member {
+    width: 250px;
+    text-align: center;
+}
+
+.member-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    background-color: var(--light-gray);
+
+    transition: transform 0.4s ease;
+    box-shadow: 0 0px 10px rgba(255, 236, 33, 0.2);
+}
+
+.member-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(241, 147, 156, 0.4);
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.member-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #f7edfc;
+    text-align: center;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.member-name:hover {
+    color: #d9df90;
+}
+
+.member-position {
+    color: #d9df90;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    text-align: center;
+}
+
+.team-icon {
+    height: 1em;
+    vertical-align: middle;
+    filter: brightness(1.2);
+}
+
+.section-title h2 {
+    font-size: 3.2rem; /* adjust this idk what to put exactly*/
+    color: #ffffff;
+    position: relative;
+    align-self: center;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.about-column-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 2rem;
+    color: #ecc3c9;
+    margin-bottom: 50px;
+    padding-bottom: 8px;
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.about-column-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    background-color: #f8f2f2;
+}

@@ -1,0 +1,22 @@
+#titlecontent{
+    color: white;
+    text-align: justify;
+}
+.blogdetails{
+    position: relative;
+    padding: 12vw 10vw 0 10vw;
+}
+
+#content{
+    padding: 2vw 10vw 2vw 10vw;
+    font-size: clamp(1.2rem, 1.5vw, 1.2rem);
+}
+#removedeco{
+    color: gray;
+}
+
+@media(min-width: 300px){
+    .blogdetails{
+        padding-top: 150px;
+    }
+}
