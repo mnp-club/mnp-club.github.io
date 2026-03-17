@@ -33,22 +33,22 @@
    <div class="upcoming-events">
     <h2>Upcoming Events</h2>
     <div class="event-card">
-      <h3>Computational Physics Projects 2.0</h3>
-      <p class="event-date">Dec 2025 - Jan 2026</p>
+      <h3>Integration Bee</h3>
+      <p class="event-date">March 2026</p>
       <p>
-      Dive into powerful simulations, cutting-edge algorithms, and projects that challenge you to model the universe one problem at a time.      </p>
+        The classic Integration Bee is back! A test of your calculus prowess, this event will challenge you to solve integrals under pressure. Whether you're a seasoned mathematician or just looking for a fun way to sharpen your skills, the Integration Bee promises an exciting and competitive atmosphere. 
+      </p>
     </div>
     <div class="event-card">
-      <h3>Mathathon</h3>
-      <p class="event-date"> January, 2026</p>
-      <p>
-Our institute’s very own Mathematics Olympiad!<br> With no time-bounds, feel free to walk in and walkout anytime - never having to worry about those much needed “5 extra minutes” that you never had!      </p>
-    </div>
-    <div class="event-card">
+      <h3>Convener Selections</h3>
+      <p class="event-date"> April 2026</p>
+      It's time to pass the torch. We're seeking passionate minds ready to lead, create, and elevate the club to greater heights. If you're ready to step up, stand out, and drive what comes next, we want you.</p>
+        </div>
+    <!-- <div class="event-card">
       <h3>School Outreach</h3>
       <p class="event-date">16th January, 2026</p>
       <p>This workshop will explore how mathematics and physics form the very foundations of reality. By encouraging logical reasoning and evidence based understanding, we aim to help the kids move beyond blind belief and develop the habit of seeking clarity through full argument and exploration.</p>
-    </div>
+    </div> -->
   </div>
   </div>
 
@@ -75,7 +75,7 @@ Our institute’s very own Mathematics Olympiad!<br> With no time-bounds, feel f
      </P>
   </div>
  </div>
-        <h2 class="gallery-heading">Highlights</h2>
+        <!-- <h2 class="gallery-heading">Highlights</h2>
     <section class="gallery-section" id="gallery">
         <div class="gallery-container">
             <div class="gallery-track">
@@ -100,16 +100,16 @@ Our institute’s very own Mathematics Olympiad!<br> With no time-bounds, feel f
                 <div class="gallery-item" data-index="6">
                     <img src="images/gallery/LogicGC 23.jpg" alt="Mathematical Models" loading="lazy">
                 </div>
-                <div class="gallery-item" data-index="6">
+                <div class="gallery-item" data-index="7">
                     <img src="images/gallery/Physics Bazinga 23.jpg" alt="Mathematical Models" loading="lazy">
                 </div>
-                <div class="gallery-item" data-index="6">
+                <div class="gallery-item" data-index="8">
                     <img src="images/gallery/Rukhsat 24.jpg" alt="Mathematical Models" loading="lazy">
                 </div>
-                <div class="gallery-item" data-index="6">
+                <div class="gallery-item" data-index="9">
                     <img src="images/gallery/STR GD 1.jpg" alt="Mathematical Models" loading="lazy">
                 </div>
-                <div class="gallery-item" data-index="6">
+                <div class="gallery-item" data-index="10">
                     <img src="images/gallery/STR GD 2.jpg" alt="Mathematical Models" loading="lazy">
                 </div>
             </div>
@@ -122,7 +122,57 @@ Our institute’s very own Mathematics Olympiad!<br> With no time-bounds, feel f
                     <svg viewBox="0 0 24 24" width="32" height="32" stroke="black" fill="none" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
                 </button>
         </div>
-    </section>
+    </section> -->
+    <h2 class="gallery-heading">Highlights</h2>
+<section class="gallery-section" id="gallery">
+    <div class="gallery-container">
+        <div class="gallery-track" id="galleryTrack">
+            <!-- Images are injected here automatically -->
+        </div>
+    </div>
+</section>
+
+<script>
+  fetch("images/gallery/manifest.json")
+    .then(response => response.json())
+    .then(files => {
+      const track = document.getElementById("galleryTrack");
+
+      // Inject images twice for seamless loop
+      [...files, ...files].forEach((file) => {
+        const name = file.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+        const item = document.createElement("div");
+        item.classList.add("gallery-item");
+        item.innerHTML = `<img src="images/gallery/${file}" alt="${name}" loading="lazy">`;
+        track.appendChild(item);
+      });
+
+      // Wait for DOM to settle
+      setTimeout(() => {
+        const totalWidth = track.scrollWidth / 2; // half because images are doubled
+        let position = 0;
+        const speed = 1; // px per frame — increase for faster scroll
+
+        function animate() {
+          position += speed;
+          if (position >= totalWidth) {
+            position = 0; // seamless reset
+          }
+          track.style.transform = `translateX(-${position}px)`;
+          requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Pause on hover
+        track.parentElement.addEventListener("mouseenter", () => speed_ref.paused = true);
+        track.parentElement.addEventListener("mouseleave", () => speed_ref.paused = false);
+      }, 500);
+    })
+    .catch(err => console.error("Could not load gallery manifest:", err));
+</script>
+
+
 <img src="wave.png" alt="Decorative wave" class="fixed-wave">
 
   <footer class="site-footer">
