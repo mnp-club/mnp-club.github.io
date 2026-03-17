@@ -74,7 +74,6 @@ nav {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 .hamburger {
@@ -88,7 +87,6 @@ nav {
   background: none;
   z-index: 1000;
 }
-
 
 .main-content {
   display: flex;
@@ -120,7 +118,6 @@ nav {
 }
 
 .club-text.top {
-  /* align-self: flex-start; */
   font-size: 4em;
   font-family: 'FodaAlt';
   margin-bottom: 5px;
@@ -129,8 +126,7 @@ nav {
 }
 
 .club-text.bottom {
-  /* align-self: flex-end; */
-    font-family: 'FodaAlt';
+  font-family: 'FodaAlt';
   margin-top: 5px;
   transform: translateX(20%);
   font-size: 4em;
@@ -138,7 +134,7 @@ nav {
 }
 
 .club-text .and {
-    font-family: 'FodaAlt';
+  font-family: 'FodaAlt';
   font-size: 0.7em;
   color: #afafaf;
 }
@@ -193,15 +189,13 @@ nav {
   line-height: 1.4;
 }
 
-
 .about {
   color: white;
   flex: 1;
   min-width: 50vw;
   max-width: 50vw;
-  padding: 150px 100px 0px 0px; 
+  padding: 150px 100px 0px 0px;
   margin-left: 0;
-  /* border-left: 1px solid rgba(255, 255, 255, 0.1); */
   text-align: justify;
 }
 
@@ -267,29 +261,30 @@ nav {
 
 /* Mobile styles */
 @media (max-width: 1024px) {
-   .main-content {
+  .main-content {
     flex-direction: column;
   }
-  
-  .image-container, 
+
+  .image-container,
   .about {
     max-width: 100%;
     padding: 20vh 20px 0px 20px;
   }
 
-  .image-container img{
+  .image-container img {
     max-width: 500px;
   }
-  
+
   .image-container {
-    order: -1; /* Image above text on mobile */
+    order: -1;
     margin-bottom: 30px;
   }
-  
+
   .about {
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
+
   .upcoming-events {
     width: 80%;
   }
@@ -299,18 +294,19 @@ nav {
   body {
     padding-bottom: 70px;
   }
-  
+
   nav {
     padding: 10px 5%;
   }
-  
+
   .logo img {
     height: 50px;
   }
-.nav-links {
+
+  .nav-links {
     position: fixed;
     top: 0;
-    right: -100vw;  /* hide offscreen initially */
+    right: -100vw;
     height: 100vh;
     width: 100%;
     background-color: black;
@@ -338,7 +334,9 @@ nav {
     cursor: pointer;
   }
 }
-.gallery-heading{
+
+/* ── Gallery ── */
+.gallery-heading {
   color: white;
   text-align: center;
   font-size: clamp(2rem, 5vw, 2rem);
@@ -346,112 +344,78 @@ nav {
 }
 
 .gallery-section {
-    background-color: rgba(92, 86, 86, 0.5);
-    padding: 0;
-    margin: 0 0 60px 0;
-    height: 350px;
-    overflow: hidden;
-    position: relative;
-    border: none;
-    z-index: 100;
+  background-color: rgba(92, 86, 86, 0.5);
+  padding: 20px 0;          /* padding so hovered image isn't clipped */
+  margin: 0 0 60px 0;
+  height: 500px;            /* tall enough for image + hover scale */
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
 }
 
 .gallery-container {
-  overflow: hidden;
+  overflow: visible;        /* let scale pop out of container */
   width: 100%;
+  height: 100%;
 }
 
 .gallery-track {
   display: flex;
   will-change: transform;
+  align-items: center;      /* vertically centre items */
+  height: 100%;
 }
 
 .gallery-item {
   flex-shrink: 0;
-  width: 900px;
-  margin-right: 16px;
+  width: 650px;             /* larger image width */
+  margin-right: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 .gallery-item img {
   width: 100%;
-  height: 900px;
+  height: 420px;            /* larger image height */
   object-fit: cover;
   display: block;
   border-radius: 8px;
-}
-.gallery-item.centered {
-    transform: scale(1.1);
-    z-index: 100;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-.gallery-item.centered img {
-    transform: scale(1.05);
-    filter: grayscale(0%);
-}
-
-.gallery-item:not(.centered) {
-    opacity: 1;
-    filter: brightness(1);
-}
-
-/* .gallery-item:not(.centered) img {
-    filter: grayscale(100%) brightness(0.8);
-} */
-
-/* .gallery-controls {
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-  z-index: 100;
-}
-
-.gallery-arrow {
-  background: none;
-  border: none;
-  padding: 0;
   cursor: pointer;
+  pointer-events: none;     /* hover/click falls through to parent div */
 }
-
-.gallery-arrow svg {
-  width: 32px;
-  height: 32px;
-  stroke: rgb(70, 70, 70);
-  fill: none;
-  stroke-width: 2;
-  transition: transform 0.2s ease;
-}
-
-.gallery-arrow:hover svg {
-  transform: scale(1.2);
-} */
 
 .fixed-wave {
   position: fixed;
   bottom: 30px;
   right: -150px;
-  width: 700px;            /* adjust as you want */
+  width: 700px;
   transform: rotate(-45deg);
-  opacity: 0.3;            /* optional: dim it */
-  pointer-events: none;    /* makes sure it doesn't block clicks */
-  z-index: -1;           /* keeps it on top of background */
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: -1;
 }
 
 html, body {
   height: 100%;
 }
+
 body {
   display: flex;
   flex-direction: column;
 }
+
 .main-content,
 .about,
 .gallery-section {
   flex: 1 0 auto;
 }
+
 .site-footer {
   flex-shrink: 0;
 }

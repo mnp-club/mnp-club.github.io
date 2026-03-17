@@ -137,37 +137,65 @@
     .then(response => response.json())
     .then(files => {
       const track = document.getElementById("galleryTrack");
+      const container = document.getElementById("gallery");
 
-      // Inject images twice for seamless loop
+      // Inject images twice
       [...files, ...files].forEach((file) => {
         const name = file.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
         const item = document.createElement("div");
         item.classList.add("gallery-item");
-        item.innerHTML = `<img src="images/gallery/${file}" alt="${name}" loading="lazy">`;
+        item.innerHTML = `<img src="images/gallery/${file}" alt="${name}">`;
         track.appendChild(item);
       });
 
-      // Wait for DOM to settle
-      setTimeout(() => {
-        const totalWidth = track.scrollWidth / 2; // half because images are doubled
+      // Wait for all images to load
+      const allImages = track.querySelectorAll("img");
+      let loaded = 0;
+
+      function startCarousel() {
+        const items = track.querySelectorAll(".gallery-item");
+
+        // Get exact pixel position where the second copy begins
+        const totalWidth = items[files.length].offsetLeft;
+
         let position = 0;
-        const speed = 1; // px per frame — increase for faster scroll
+        let paused = false;
+        const speed = 2;
 
         function animate() {
-          position += speed;
-          if (position >= totalWidth) {
-            position = 0; // seamless reset
+          if (!paused) {
+            position += speed;
+            if (position >= totalWidth) position = 0;
+            track.style.transform = `translateX(-${position}px)`;
           }
-          track.style.transform = `translateX(-${position}px)`;
           requestAnimationFrame(animate);
         }
 
         animate();
 
-        // Pause on hover
-        track.parentElement.addEventListener("mouseenter", () => speed_ref.paused = true);
-        track.parentElement.addEventListener("mouseleave", () => speed_ref.paused = false);
-      }, 500);
+      // REPLACE with this — goes right after animate():
+      track.addEventListener("mouseover", (e) => {
+        const item = e.target.closest(".gallery-item");
+        if (item) paused = true;
+      });
+
+      track.addEventListener("mouseout", (e) => {
+        const item = e.target.closest(".gallery-item");
+        if (item) paused = false;
+      });
+      }
+
+      allImages.forEach(img => {
+        const onLoad = () => {
+          loaded++;
+          if (loaded === allImages.length) startCarousel();
+        };
+        if (img.complete) onLoad();
+        else {
+          img.addEventListener("load", onLoad);
+          img.addEventListener("error", onLoad); // skip broken images
+        }
+      });
     })
     .catch(err => console.error("Could not load gallery manifest:", err));
 </script>
