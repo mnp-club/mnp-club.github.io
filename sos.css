@@ -4,6 +4,10 @@
     font-size: clamp(1rem, 3vw, 1.2rem);
 }
 
+a {
+    text-decoration: none;
+    color : white;
+}
 .sos-card {
             background-color: #3e3e3e;
             display: flex;
@@ -19,6 +23,24 @@
             margin-bottom: 0;
             background-color: #292929;
         }
+
+        .sos-card.hover.reverse:hover {
+            background-color: #3e3e3e;
+        }
+
+        .text.hover {
+            color: white;
+            text-decoration: none;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            display: inline-block;
+            margin-top: 2vw;
+        }
+        .text.hover:hover
+        {
+            text-decoration: underline;
+        }
+
+        
         
         .sos-card img {
             width: 100%;
@@ -52,15 +74,12 @@
             line-height: 1.5;
         }
         
-        .sos-card a {
+        .sos-card span {
             color: white;
             text-decoration: none;
             font-size: clamp(1rem, 3vw, 1.2rem);
             display: inline-block;
             margin-top: 2vw;
-        }
-        .sos-card :hover{
-            text-decoration: underline;
         }
 
         @media (min-width: 768px) {
@@ -101,7 +120,7 @@
                 font-size: clamp(1rem, 1.2vw, 1.2rem);
             }
             
-            .sos-card a {
+            .sos-card span {
                 margin-top: 1vw;
             }
         }
