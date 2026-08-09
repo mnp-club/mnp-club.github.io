@@ -187,10 +187,46 @@ nav {
   margin-bottom: 10px;
 }
 
+/* Past Events preview cards only have a title + date, no description
+   paragraph below — so the date shouldn't reserve space for one. */
+.timeline-preview .event-date {
+  margin-bottom: 0;
+}
+
 .event-card p {
   color: #e0e0e0;
   font-size: 1rem;
   line-height: 1.4;
+}
+
+.upcoming-events.past-events {
+  margin-top: 40px;
+}
+
+.timeline-preview-link {
+  display: block;
+  text-decoration: none;
+}
+
+.timeline-preview {
+  /* Sized to show ~3 event cards (card height + gap) before scrolling */
+  max-height: 255px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Cards inside the preview reuse .event-card as-is; just tighten the last one */
+.timeline-preview .event-card:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-preview::-webkit-scrollbar {
+  width: 6px;
+}
+
+.timeline-preview::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
 }
 
 
@@ -437,6 +473,95 @@ nav {
 
 .gallery-arrow:hover svg {
   transform: scale(1.2);
+}
+
+/* ── Team preview (horizontal scroll, whole thing links to team.html) ── */
+.about .gallery-heading {
+  text-align: left;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  margin: 0 0 20px 20px;
+}
+
+.team-preview-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.team-preview-section {
+  width: 100%;
+  background: rgba(92, 86, 86, 0.5);
+  border-radius: 12px;
+  padding: 25px 15px 15px;
+  margin: 0 0 20px 0;
+  overflow: hidden;
+}
+
+.team-preview-track {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  padding: 5px 10px 15px;
+  scroll-snap-type: x proximity;
+}
+
+.team-preview-card {
+  flex: 0 0 auto;
+  width: 150px;
+  text-align: center;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+  /* override team.css's wrap-friendly default width */
+}
+
+.team-preview-card:hover {
+  transform: translateY(-4px);
+}
+
+.team-preview-card .member-image {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 15px;
+}
+
+.team-preview-card .member-name {
+  font-size: 1rem;
+}
+
+.team-preview-card .member-position {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.team-preview-insta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #afafaf;
+  font-size: 0.8rem;
+}
+
+.team-preview-insta svg {
+  flex-shrink: 0;
+}
+
+.team-preview-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.team-preview-track::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  .team-preview-card {
+    width: 120px;
+  }
+  .team-preview-card .member-image {
+    width: 90px;
+    height: 90px;
+  }
 }
 
 .fixed-wave {

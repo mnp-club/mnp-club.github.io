@@ -1,10 +1,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoS'20 | Maths & Physics Club</title>
+  <title>Black Holes | Maths & Physics Club</title>
   <link rel="stylesheet" href="../home.css">
   <link rel="stylesheet" href="../timeline.css">
-  <link rel="stylesheet" href="../sos.css">
+  <link rel="stylesheet" href="../Blogs/blogpage.css">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=neue-machina@400,700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="../images/favicon.png">
@@ -26,62 +26,34 @@
     </ul>
   </nav>
 
-  <h1>Summer of Science 2020</h1>
-<div class="container">
-    <a href="https://drive.google.com/file/d/1k6MAxVlf6gqqPaullXqHs-ndjrXSv5Hz/view?usp=drive_link">
-        <div class="sos-card reverse hover">
-            <img src="../SoS Images/2020/HighEnergyAstrophysics.png" alt="High Energy Astrophysics">
-            <div class="content">
-                <h2>High Energy Astrophysics</h2>
-                <span>Yatin Jindal explores high energy astrophysics, studying the universe's most extreme objects and phenomena under extraordinary conditions.</span>
+ <div id = "titlecontent" class = "blogmargin">
+            <h1>
+                An interplay on Data, Analysis and Fast Algorithms
+            </h1>
+            <div class="blogdetails">
+            <div id = "blogdate">
+                March 12, 2026
+            </div>
+            </div>
+
+            <div id = "content">
+                <p>Have you ever wondered how complex and massive problems are solved efficiently on computers?
+
+                    The answer lies in the interplay of structured data and fast algorithms. This talk will explore how data sparsity arises in such key problems and introduce key ideas like high-rank decompositions and sparse representations that enable such fast algorithms, all without assuming any background other than linear algebra at a first-year level!!</p>
+
+                    <br><p>Prof. Manas Rachh is a mathematician whose research explores integral equation formulations and numerical methods to solve the same, as well as developing and studying novel algorithms to work with statistics, structured matrices and data analysis.</p>
+
+                    <br><p><strong>Abstract:</strong> Structured matrices are ubiquitous in many areas of science and engineering such as molecular dynamics, antenna and speaker modeling, medical imaging, microfluidic device design, computational statistics, and data visualization to name a few. Traditionally, these matrices tend to be dense and the cost of applying N x N matrices scales like O(N^2). However, large sub-blocks of these matrices tend to be data-sparse. This structure can be exploited to apply matvecs in O(N) CPU time — thus enabling the simulation of much larger computational problems with the same computational budget. This is true, not only in first principle simulations, but also as core components of data analysis pipelines.</p>
+
+                    <br><p>The purpose of this talk is two-fold: a) to understand how this data-sparsity manifests itself both for the construction of low dimensional embeddings in bioinformatics (scRNA-seq) and for the computation of N-body sums arising in mathematical physics; and b) to present key recurrent ideas (low-rank decompositions, additive/multiplicative sparse representations, sum of exponential representations, etc) that are used in the development of fast algorithms. These ideas are bringing us a step closer to accurate and efficient large-scale simulation, which I will illustrate with an example from acoustic speaker design.</p>
+                        <br> <p> For more information, check out Prof. Manas Rachh's profile at <a style="color: cornflowerblue;" href="https://mrachh.github.io/" target="_blank">https://mrachh.github.io/</a> </p>
+                    <br/>
+                <br/>
             </div>
         </div>
-    </a>
 
-    <a href="https://drive.google.com/file/d/1SMmhyxwFIi9ShjLUUbm0n5746fYabURW/view?usp=drive_link">
-        <div class="sos-card reverse hover">
-            <img src="../SoS Images/2020/GraphTheory.png" alt="Graph Theory and Graph Algorithms">
-            <div class="content">
-                <h2>Graph Theory and Graph Algorithms</h2>
-                <span>Aakriti explores graph theory and graph algorithms, examining their mathematical foundations and applications across diverse fields.</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://drive.google.com/file/d/1dsSodb8Uk1W_FWfnYq5e7OV38-uWeWHU/view?usp=drive_link">
-        <div class="sos-card reverse hover">
-            <img src="../SoS Images/2020/CodingTheory.png" alt="Basics of Coding Theory">
-            <div class="content">
-                <h2>Basics of Coding Theory</h2>
-                <span>Abhinav Gupta explores coding theory, investigating the mathematical principles behind data encoding, transmission, and error correction.</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://drive.google.com/file/d/1O76UnwxzlpMP2I86NOrVcgaD5CVmWmEA/view?usp=drive_link">
-        <div class="sos-card reverse hover">
-            <img src="../SoS Images/2020/FinancialMathematics.png" alt="Financial Mathematics">
-            <div class="content">
-                <h2>Financial Mathematics</h2>
-                <span>Dishank Jindal explores financial mathematics, studying financial markets and the mathematical models that underpin them.</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://drive.google.com/file/d/16v8LRUJfffXB1iMQzRhvleeQIgDIg8IM/view?usp=drive_link">
-        <div class="sos-card reverse hover">
-            <img src="../SoS Images/2020/SpaceFlightMechanics.png" alt="Space Flight Mechanics">
-            <div class="content">
-                <h2>Space Flight Mechanics</h2>
-                <span>Abhinav Biswas explores space flight mechanics, examining the physics and mathematics involved in sending spacecraft to celestial bodies.</span>
-            </div>
-        </div>
-    </a>
-  </div>
-
+ <img src="../wave.png" alt="Decorative wave" class="fixed-wave">
  
-<img src="../wave.png" alt="Decorative wave" class="fixed-wave">
-
 <footer class="site-footer">
   <div class="footer-content">
     <div class="social-links">
@@ -113,7 +85,9 @@
     </div>
     <p>© 2026 Maths And Physics Club. All rights reserved.</p>
   </div>
-<script>
+
+  </footer>
+  <script>
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
