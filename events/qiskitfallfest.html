@@ -1,0 +1,1460 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Qiskit Fall Fest IIT Bombay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   Qiskit Fall Fest 2026 · IIT Bombay
+   Dark, committed. IBM Carbon geometry, Qiskit purple.
+   Two-colour state coding runs through every instrument:
+     purple  = |0>  / amplitude
+     cyan    = |1>  / measurement
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --void:      #07060C;
+  --ground:    #0B0912;
+  --layer:     #120F1C;
+  --layer-2:   #191428;
+  --rule:      #271F3C;
+  --rule-soft: #1C1730;
+  --rule-hot:  #4A3A75;
+
+  --text:      #F5F2FB;
+  --text-2:    #CFC6E4;
+  --dim:       #9C90BA;
+  --dim-2:     #6F6488;
+
+  --q:         #8A3FFC;   /* Carbon purple-60 — Qiskit */
+  --q-lt:      #BE95FF;   /* Carbon purple-40 */
+  --q-dk:      #6929C4;   /* Carbon purple-70 */
+  --cy:        #3DDBD9;   /* Carbon teal-30 — measurement */
+  --cy-dk:     #009D9A;
+  --amber:     #F1C21B;
+
+  --maxw: 1220px;
+  --gut: 32px;
+
+  --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  color-scheme: dark;
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  background: var(--void);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a{ color: var(--q-lt); text-decoration: none; }
+a:hover{ color: var(--text); }
+:focus-visible{ outline: 2px solid var(--q-lt); outline-offset: 3px; }
+canvas{ display: block; }
+
+.wrap{ width:100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
+
+/* ── type ─────────────────────────────────────────────────── */
+
+h1,h2,h3,h4{
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.display{ font-size: clamp(38px, 5.4vw, 76px); }
+.h2{ font-size: clamp(32px, 4.6vw, 56px); }
+.h3{ font-size: clamp(20px, 2.2vw, 26px); letter-spacing:-0.025em; }
+
+.eyebrow{
+  display:flex; align-items:center; gap: 11px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--q-lt); margin: 0 0 18px;
+}
+.eyebrow::before{ content:""; width: 26px; height:1px; background: var(--q); flex:none; }
+
+.lede{ font-size: clamp(16px, 1.5vw, 19px); color: var(--text-2); max-width: 56ch; margin: 18px 0 0; line-height:1.6; }
+.mono{ font-family: var(--mono); }
+.tnum{ font-variant-numeric: tabular-nums; }
+
+/* ── nav ──────────────────────────────────────────────────── */
+
+#nav{
+  position: sticky; top:0; z-index: 60;
+  background: rgba(7,6,12,.82);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.nav-in{ display:flex; align-items:center; gap:18px; height: 60px; }
+.brand{ display:flex; align-items:center; gap:11px; margin-right:auto; }
+.brand img{ width:26px; height:26px; }
+.brand-txt{ display:block; }
+.brand-txt b{ display:block; font-size:14.5px; font-weight:600; letter-spacing:-.02em; color:var(--text); line-height:1.2; }
+.brand-txt span{ display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim-2); }
+.nav-links{ display:flex; gap:4px; }
+.nav-links a{ padding:7px 11px; font-size:14px; color:var(--text-2); border-bottom:2px solid transparent; }
+.nav-links a:hover{ color:var(--text); border-bottom-color: var(--q); }
+.burger{
+  display:none; width:40px; height:40px; align-items:center; justify-content:center;
+  background:none; border:1px solid var(--rule); color:var(--text); cursor:pointer; padding:0;
+}
+.burger span{ display:block; width:17px; height:1.5px; background:currentColor; box-shadow:0 -5px 0 currentColor, 0 5px 0 currentColor; }
+#mobileMenu{ border-bottom:1px solid var(--rule); background: var(--ground); }
+#mobileMenu a{ display:block; padding:13px var(--gut); font-size:15px; color:var(--text-2); border-top:1px solid var(--rule-soft); }
+
+/* ── buttons ──────────────────────────────────────────────── */
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:space-between; gap:34px;
+  padding: 15px 17px; font-size:15px; font-weight:500; line-height:1.2;
+  border:1px solid transparent; cursor:pointer; font-family:inherit;
+  transition: background .14s ease, border-color .14s ease, color .14s ease;
+}
+.btn-primary{ background: var(--q); color:#fff; }
+.btn-primary:hover{ background: var(--q-dk); color:#fff; }
+.btn-ghost{ background:transparent; border-color: var(--rule-hot); color: var(--text); }
+.btn-ghost:hover{ background: var(--layer-2); border-color: var(--q-lt); color: var(--text); }
+.btn .arw{ font-family:var(--mono); opacity:.85; }
+
+/* ── hero ─────────────────────────────────────────────────── */
+
+.hero{ position:relative; overflow:hidden; border-bottom:1px solid var(--rule-soft); }
+#field{ position:absolute; inset:0; width:100%; height:100%; opacity:.55; filter: blur(0.5px); }
+.hero::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 12% 40%, rgba(7,6,12,.94) 20%, rgba(7,6,12,.55) 55%, transparent 78%),
+    linear-gradient(to bottom, transparent 60%, var(--void) 99%);
+}
+.hero-in{ position:relative; z-index:2; display:grid; grid-template-columns: minmax(0,1fr) minmax(0,460px); align-items:center; gap:30px; padding: 78px var(--gut) 68px; }
+.hero h1 em{ font-style:normal; color: var(--q-lt); }
+.hero-chips{ display:flex; flex-wrap:wrap; gap:8px; margin: 26px 0 0; }
+.chip{
+  font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  padding:6px 11px; border:1px solid var(--rule-hot); color:var(--text-2); background: rgba(18,15,28,.6);
+}
+.hero-actions{ display:flex; flex-wrap:wrap; gap:11px; margin-top:30px; }
+
+.bloch-wrap{ position:relative; justify-self:center; width:100%; max-width:520px; aspect-ratio:1; touch-action:none; cursor:grab; }
+.bloch-wrap:active{ cursor:grabbing; }
+#bloch{ width:100%; height:100%; }
+.bloch-hint{
+  position:absolute; left:50%; transform:translateX(-50%); bottom:-2px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--dim-2);
+  white-space:nowrap; pointer-events:none;
+}
+
+/* ── marquee ──────────────────────────────────────────────── */
+
+.marquee{ border-bottom:1px solid var(--rule-soft); background: var(--ground); overflow:hidden; padding: 13px 0; }
+.marquee-track{ display:flex; width:max-content; animation: slide 46s linear infinite; }
+.marquee-track span{
+  font-family:var(--mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--dim); padding: 0 26px; white-space:nowrap;
+}
+.marquee-track b{ color: var(--q-lt); font-weight:500; }
+@keyframes slide{ from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+
+/* ── sections ─────────────────────────────────────────────── */
+
+.sec{ padding: 78px var(--gut); border-bottom:1px solid var(--rule-soft); }
+.sec-head{ display:grid; grid-template-columns: minmax(0,1fr) minmax(0,42%); gap:40px; align-items:end; margin-bottom:44px; }
+.sec-head .lede{ margin:0; }
+
+/* ── gate lab ─────────────────────────────────────────────── */
+
+.lab{ display:grid; grid-template-columns: minmax(0,400px) minmax(0,1fr); border:1px solid var(--rule); background: var(--layer); }
+.lab-vis{ position:relative; border-right:1px solid var(--rule); aspect-ratio:1; }
+#labBloch{ width:100%; height:100%; }
+.lab-side{ display:flex; flex-direction:column; }
+.lab-blk{ padding: 20px 22px; border-bottom:1px solid var(--rule); }
+.lab-blk:last-child{ border-bottom:0; }
+.lab-lbl{ font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim-2); margin-bottom:13px; }
+
+.gates{ display:flex; flex-wrap:wrap; gap:7px; }
+.gate{
+  width:46px; height:42px; display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:15px; font-weight:500; color:var(--text);
+  background: var(--layer-2); border:1px solid var(--rule-hot); cursor:pointer;
+  transition: background .12s, border-color .12s, transform .08s;
+}
+.gate:hover{ background: var(--q-dk); border-color: var(--q-lt); }
+.gate:active{ transform: translateY(1px); }
+.gate.wide{ width:auto; padding:0 12px; font-size:13px; }
+.gate.reset{ color:var(--dim); border-color:var(--rule); background:transparent; }
+.gate.reset:hover{ color:var(--text); background:var(--layer-2); border-color:var(--rule-hot); }
+
+.ket{ font-family:var(--mono); font-size: clamp(13px,1.35vw,15.5px); line-height:2; color:var(--text-2); }
+.ket .amp{ color:var(--q-lt); }
+.ket .amp.cy{ color:var(--cy); }
+.ket .op{ color:var(--dim-2); }
+
+.probs{ display:flex; flex-direction:column; gap:11px; }
+.prob{ display:grid; grid-template-columns: 42px 1fr 58px; align-items:center; gap:12px; font-family:var(--mono); font-size:12.5px; }
+.prob .bar{ height:9px; background: var(--layer-2); border:1px solid var(--rule); position:relative; overflow:hidden; }
+.prob .fill{ position:absolute; inset:0 auto 0 0; width:0; transition: width .42s cubic-bezier(.22,.7,.3,1); }
+.prob.p0 .fill{ background: linear-gradient(90deg, var(--q-dk), var(--q)); }
+.prob.p1 .fill{ background: linear-gradient(90deg, var(--cy-dk), var(--cy)); }
+.prob .val{ text-align:right; color:var(--text-2); }
+
+.circ{ overflow-x:auto; padding-bottom:4px; }
+#circCanvas{ height:66px; }
+
+/* ── events ───────────────────────────────────────────────── */
+
+.note{ display:flex; gap:14px; padding:15px 18px; border-left:2px solid var(--q); background: var(--layer); margin-bottom:36px; }
+.note b{ font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--q-lt); flex:none; padding-top:3px; }
+.note p{ margin:0; font-size:14.5px; color:var(--text-2); }
+
+.evs{ display:grid; gap:1px; background: var(--rule); border:1px solid var(--rule); }
+.ev{
+  display:grid; grid-template-columns: 68px 108px minmax(0,1fr) minmax(0,300px);
+  gap:22px; align-items:center; padding:22px 24px; background: var(--ground);
+  transition: background .16s;
+}
+.ev:hover{ background: var(--layer); }
+.ev-n{ font-family:var(--mono); font-size:12px; color:var(--dim-2); letter-spacing:.1em; }
+.ev-gl{ width:100%; height:56px; }
+.ev-t{ font-size:19px; font-weight:600; letter-spacing:-.02em; margin:0 0 4px; }
+.ev-d{ margin:0; font-size:14px; color:var(--dim); line-height:1.5; }
+.ev-meta{ display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+.tbd{ font-family:var(--mono); font-size:10px; letter-spacing:.12em; padding:4px 9px; border:1px dashed var(--rule-hot); color:var(--dim-2); }
+.kind{ font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding:4px 9px; border:1px solid var(--q-dk); color:var(--q-lt); }
+
+/* ── hardware ─────────────────────────────────────────────── */
+
+.hw{ display:grid; grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); border:1px solid var(--rule); background:var(--layer); }
+.hw-map{ position:relative; border-right:1px solid var(--rule); min-height:340px; }
+#lattice{ width:100%; height:100%; position:absolute; inset:0; }
+.hw-map::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:58px; pointer-events:none;
+  background: linear-gradient(to top, var(--layer) 22%, rgba(18,15,28,0)); }
+.hw-cap{ position:absolute; z-index:2; left:20px; bottom:16px; font-family:var(--mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--dim-2); }
+.hw-side{ padding:26px 26px 28px; display:flex; flex-direction:column; gap:20px; }
+.shots{ display:flex; flex-direction:column; gap:9px; }
+.shot{ display:grid; grid-template-columns:50px 1fr 76px; align-items:center; gap:11px; font-family:var(--mono); font-size:12.5px; }
+.shot .bar{ height:20px; background: var(--layer-2); border:1px solid var(--rule); position:relative; overflow:hidden; }
+.shot .fill{ position:absolute; inset:0 auto 0 0; width:0; background: linear-gradient(90deg, var(--q-dk), var(--q-lt)); }
+.shot.z .fill{ background: linear-gradient(90deg, var(--cy-dk), var(--cy)); }
+.shot .n{ text-align:right; color:var(--text-2); }
+.runline{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.runline .st{ font-family:var(--mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--dim-2); }
+
+/* ── resources ────────────────────────────────────────────── */
+
+.filters{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:26px; }
+.filt{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase;
+  padding:7px 12px; background:transparent; border:1px solid var(--rule-hot); color:var(--dim);
+  cursor:pointer; transition: all .13s;
+}
+.filt:hover{ color:var(--text); border-color:var(--q-lt); }
+.filt[aria-pressed="true"]{ background: var(--q); border-color:var(--q); color:#fff; }
+
+.res-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:1px; background: var(--rule); border:1px solid var(--rule); }
+.res{ display:block; padding:20px 21px 22px; background: var(--ground); position:relative; transition: background .15s; }
+.res:hover{ background: var(--layer); }
+.res-tag{ font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--q-lt); border:1px solid var(--q-dk); padding:3px 7px; display:inline-block; margin-bottom:12px; }
+.res.soon .res-tag{ color:var(--amber); border-color:#8E6A03; }
+.res h4{ font-size:16px; font-weight:600; letter-spacing:-.02em; color:var(--text); margin:0 0 6px; }
+.res p{ margin:0; font-size:13.5px; color:var(--dim); line-height:1.5; }
+.res .host{ display:block; margin-top:12px; font-family:var(--mono); font-size:10.5px; color:var(--dim-2); word-break:break-all; }
+.res .go{ position:absolute; top:19px; right:19px; font-family:var(--mono); font-size:13px; color:var(--dim-2); }
+.res:hover .go{ color:var(--q-lt); }
+
+/* ── faq ──────────────────────────────────────────────────── */
+
+.faq{ max-width: 760px; border-top:1px solid var(--rule); }
+.qa{ border-bottom:1px solid var(--rule); }
+.qa summary{
+  list-style:none; cursor:pointer; padding:19px 34px 19px 0; position:relative;
+  font-size:16.5px; font-weight:500; color:var(--text); letter-spacing:-.015em;
+}
+.qa summary::-webkit-details-marker{ display:none; }
+.qa summary::after{ content:"+"; position:absolute; right:6px; top:17px; font-family:var(--mono); font-size:18px; color:var(--q-lt); }
+.qa[open] summary::after{ content:"\2212"; }
+.qa p{ margin:0 0 20px; font-size:14.5px; color:var(--dim); max-width:64ch; line-height:1.6; }
+
+/* ── contact ──────────────────────────────────────────────── */
+
+.cta-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); }
+.cta-card{ background: var(--ground); padding:28px 28px 30px; }
+.cta-card h3{ margin:0 0 8px; }
+.cta-card p{ margin:0 0 20px; font-size:14.5px; color:var(--dim); }
+.det{ display:grid; grid-template-columns:auto 1fr; gap:0; border-top:1px solid var(--rule-soft); }
+.det dt{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim-2); padding:13px 20px 13px 0; border-bottom:1px solid var(--rule-soft); }
+.det dd{ margin:0; padding:13px 0; text-align:right; font-size:14px; color:var(--text-2); border-bottom:1px solid var(--rule-soft); }
+.ph{ font-family:var(--mono); font-size:12.5px; color:var(--dim-2); border:1px dashed var(--rule-hot); padding:3px 9px; }
+
+/* ── footer ───────────────────────────────────────────────── */
+
+footer{ background: var(--void); }
+.foot-in{ display:flex; flex-wrap:wrap; gap:40px; justify-content:space-between; padding:44px var(--gut) 36px; }
+.foot-brand{ display:flex; gap:13px; max-width:400px; }
+.foot-brand img{ width:28px; height:28px; flex:none; margin-top:2px; }
+.foot-brand b{ display:block; font-size:14px; font-weight:600; color:var(--text); margin-bottom:5px; }
+.foot-brand p{ margin:0; font-size:13px; color:var(--dim-2); line-height:1.6; }
+.foot-cols{ display:flex; gap:52px; flex-wrap:wrap; }
+.foot-col h5{ font-family:var(--mono); font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--dim-2); margin:0 0 12px; font-weight:500; }
+.foot-col a{ display:block; font-size:13.5px; color:var(--text-2); padding:4px 0; }
+.foot-bar{ border-top:1px solid var(--rule-soft); padding:18px var(--gut) 26px; }
+.foot-bar p{ margin:0; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; color:var(--dim-2); line-height:1.9; }
+
+/* ── responsive ───────────────────────────────────────────── */
+
+@media (max-width: 1040px){
+  .hero-in{ grid-template-columns:1fr; gap:34px; padding:56px var(--gut) 52px; }
+  .bloch-wrap{ order:-1; max-width:380px; }
+  .sec-head{ grid-template-columns:1fr; gap:20px; align-items:start; }
+  .lab{ grid-template-columns:1fr; }
+  .lab-vis{ border-right:0; border-bottom:1px solid var(--rule); max-width:420px; margin:0 auto; width:100%; }
+  .hw{ grid-template-columns:1fr; }
+  .hw-map{ border-right:0; border-bottom:1px solid var(--rule); }
+  .res-grid{ grid-template-columns: repeat(2,1fr); }
+  .ev{ grid-template-columns: 46px 88px minmax(0,1fr); }
+  .ev-meta{ grid-column: 2 / -1; justify-content:flex-start; }
+}
+@media (max-width: 720px){
+  :root{ --gut: 20px; }
+  #field{ opacity:.42; }
+  .bloch-wrap{ max-width: 292px; }
+  .nav-links{ display:none; }
+  .burger{ display:flex; }
+  .sec{ padding:56px var(--gut); }
+  .res-grid{ grid-template-columns:1fr; }
+  .cta-grid{ grid-template-columns:1fr; }
+  .ev{ grid-template-columns: 40px minmax(0,1fr); gap:14px; row-gap:12px; padding:20px; }
+  .ev-gl{ display:none; }
+  .ev-meta{ grid-column:2 / -1; }
+  .btn{ flex:1 1 100%; }
+  .foot-cols{ gap:36px; }
+}
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+}
+</style>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<header id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <img src="data:image/png;base64,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" alt="Qiskit">
+      <span class="brand-txt">
+        <b>Qiskit Fall Fest 2026</b>
+        <span>IIT Bombay</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#try">Try it</a>
+      <a href="#events">Events</a>
+      <a href="#hardware">Hardware</a>
+      <a href="#resources">Resources</a>
+      <a href="#faq">FAQ</a>
+      <a href="#register">Register</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+  </div>
+  <div id="mobileMenu" hidden>
+    <a href="#try">Try it</a>
+    <a href="#events">Events</a>
+    <a href="#hardware">Hardware</a>
+    <a href="#resources">Resources</a>
+    <a href="#faq">FAQ</a>
+    <a href="#register">Register</a>
+  </div>
+</header>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <div>
+      <p class="eyebrow">Qiskit Fall Fest 2026</p>
+      <h1 class="display">Write your first<br>quantum program.<br><em>Run it on<br>real hardware.</em></h1>
+      <div class="hero-chips">
+        <span class="chip">Oct–Nov 2026</span>
+        <span class="chip">IIT Bombay · Powai</span>
+        <span class="chip">Free</span>
+        <span class="chip">No prerequisites</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#register">Register interest <span class="arw">&rarr;</span></a>
+        <a class="btn btn-ghost" href="#try">Try a qubit now <span class="arw">&darr;</span></a>
+      </div>
+    </div>
+    <div class="bloch-wrap" id="blochWrap">
+      <canvas id="bloch" role="img" aria-label="Interactive Bloch sphere showing a qubit state vector precessing between the poles labelled ket zero and ket one. Drag to rotate."></canvas>
+      <span class="bloch-hint">Drag to rotate</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ MARQUEE ══════════════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mq"></div>
+</div>
+
+<!-- ══════════════════ GATE LAB ══════════════════ -->
+<section class="sec" id="try">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Try it</p>
+        <h2 class="h2">This is hour one.</h2>
+      </div>
+      <p class="lede">Press a gate. The qubit moves. Everything below is real linear algebra — the same 2&times;2 matrices Qiskit applies, running in your browser.</p>
+    </div>
+
+    <div class="lab">
+      <div class="lab-vis">
+        <canvas id="labBloch" role="img" aria-label="Bloch sphere showing the current qubit state after the gates you applied."></canvas>
+      </div>
+      <div class="lab-side">
+        <div class="lab-blk">
+          <p class="lab-lbl">Apply a gate</p>
+          <div class="gates" id="gates">
+            <button class="gate" data-g="H" title="Hadamard — creates superposition">H</button>
+            <button class="gate" data-g="X" title="Pauli-X — bit flip">X</button>
+            <button class="gate" data-g="Y" title="Pauli-Y">Y</button>
+            <button class="gate" data-g="Z" title="Pauli-Z — phase flip">Z</button>
+            <button class="gate" data-g="S" title="S — quarter turn phase">S</button>
+            <button class="gate" data-g="T" title="T — eighth turn phase">T</button>
+            <button class="gate wide" data-g="SX" title="Square root of X">&radic;X</button>
+            <button class="gate reset wide" data-g="RESET" title="Back to ket zero">Reset</button>
+          </div>
+        </div>
+        <div class="lab-blk">
+          <p class="lab-lbl">State vector</p>
+          <div class="ket" id="ket"></div>
+        </div>
+        <div class="lab-blk">
+          <p class="lab-lbl">Measure in the computational basis</p>
+          <div class="probs">
+            <div class="prob p0"><span>|0&rang;</span><span class="bar"><span class="fill" id="f0"></span></span><span class="val tnum" id="v0">100.0%</span></div>
+            <div class="prob p1"><span>|1&rang;</span><span class="bar"><span class="fill" id="f1"></span></span><span class="val tnum" id="v1">0.0%</span></div>
+          </div>
+        </div>
+        <div class="lab-blk">
+          <p class="lab-lbl">Your circuit</p>
+          <div class="circ"><canvas id="circCanvas" role="img" aria-label="Circuit diagram of the gates you have applied."></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ EVENTS ══════════════════ -->
+<section class="sec" id="events">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">The programme</p>
+        <h2 class="h2">Five sessions,<br>in sequence.</h2>
+      </div>
+      <p class="lede">Each one stands alone. Quantum101 &rarr; Hackathon is the route we would take.</p>
+    </div>
+
+    <div class="note">
+      <b>Note</b>
+      <p>Dates, times and venues are being finalised with the department. Register your interest and we will email you the moment they are confirmed.</p>
+    </div>
+
+    <div class="evs">
+      <article class="ev">
+        <span class="ev-n">01</span>
+        <canvas class="ev-gl" data-glyph="superpose" aria-hidden="true"></canvas>
+        <div>
+          <h3 class="ev-t">Quantum101</h3>
+          <p class="ev-d">Qubits, superposition and measurement, built from scratch and demonstrated live in Qiskit.</p>
+        </div>
+        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Workshop</span></div>
+      </article>
+      <article class="ev">
+        <span class="ev-n">02</span>
+        <canvas class="ev-gl" data-glyph="wave" aria-hidden="true"></canvas>
+        <div>
+          <h3 class="ev-t">Guest Speaker Talk</h3>
+          <p class="ev-d">Someone from the quantum industry on where the field actually is, and what has been oversold.</p>
+        </div>
+        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Talk</span></div>
+      </article>
+      <article class="ev">
+        <span class="ev-n">03</span>
+        <canvas class="ev-gl" data-glyph="decohere" aria-hidden="true"></canvas>
+        <div>
+          <h3 class="ev-t">Professor Talk</h3>
+          <p class="ev-d">An IIT Bombay faculty view of the physics under the abstraction — how a qubit is built and kept coherent.</p>
+        </div>
+        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Talk</span></div>
+      </article>
+      <article class="ev">
+        <span class="ev-n">04</span>
+        <canvas class="ev-gl" data-glyph="circuit" aria-hidden="true"></canvas>
+        <div>
+          <h3 class="ev-t">Quantum Hackathon</h3>
+          <p class="ev-d">Teams, a problem statement, mentors, and access to IBM Quantum hardware. <a href="#resources">Prep material</a> is below.</p>
+        </div>
+        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Hackathon</span></div>
+      </article>
+      <article class="ev">
+        <span class="ev-n">05</span>
+        <canvas class="ev-gl" data-glyph="fridge" aria-hidden="true"></canvas>
+        <div>
+          <h3 class="ev-t">Lab Visits &amp; Closing Ceremony</h3>
+          <p class="ev-d">A walk through the hardware and instrumentation on campus, then results and closing remarks.</p>
+        </div>
+        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Lab visit</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ HARDWARE ══════════════════ -->
+<section class="sec" id="hardware">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Where it runs</p>
+        <h2 class="h2">Not a simulator.</h2>
+      </div>
+      <p class="lede">Hackathon circuits are queued to an IBM superconducting processor — transmons on a heavy-hex lattice, held near 15&nbsp;millikelvin. This is the shape of one.</p>
+    </div>
+
+    <div class="hw">
+      <div class="hw-map">
+        <canvas id="lattice" role="img" aria-label="Animated map of an IBM heavy-hexagonal qubit lattice, with a two-qubit gate pulse travelling between coupled qubits."></canvas>
+        <span class="hw-cap">Heavy-hex coupling map &middot; every qubit has at most 3 neighbours</span>
+      </div>
+      <div class="hw-side">
+        <div>
+          <p class="lab-lbl">Bell state &middot; H then CNOT &middot; 1024 shots</p>
+          <div class="shots">
+            <div class="shot"><span>|00&rang;</span><span class="bar"><span class="fill" id="b00"></span></span><span class="n tnum" id="n00">0</span></div>
+            <div class="shot"><span>|01&rang;</span><span class="bar"><span class="fill" id="b01"></span></span><span class="n tnum" id="n01">0</span></div>
+            <div class="shot"><span>|10&rang;</span><span class="bar"><span class="fill" id="b10"></span></span><span class="n tnum" id="n10">0</span></div>
+            <div class="shot z"><span>|11&rang;</span><span class="bar"><span class="fill" id="b11"></span></span><span class="n tnum" id="n11">0</span></div>
+          </div>
+        </div>
+        <p class="ev-d" style="margin:0">Two qubits, entangled. Neither one has a value of its own — but they always agree. The stray counts in the middle two rows are readout error, and on real hardware they never quite reach zero.</p>
+        <div class="runline">
+          <button class="btn btn-ghost" id="runBtn" style="gap:14px;padding:11px 15px;font-size:14px">Run again <span class="arw">&#8635;</span></button>
+          <span class="st" id="runSt">job complete</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ RESOURCES ══════════════════ -->
+<section class="sec" id="resources">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Resources</p>
+        <h2 class="h2">Everything,<br>before and after.</h2>
+      </div>
+      <p class="lede">All free, all link-checked. Session slides and notebooks land here as the fest runs.</p>
+    </div>
+
+    <div class="filters" id="filters">
+      <button class="filt" data-f="all" aria-pressed="true">All</button>
+      <button class="filt" data-f="start" aria-pressed="false">Start here</button>
+      <button class="filt" data-f="learn" aria-pressed="false">Courses</button>
+      <button class="filt" data-f="docs" aria-pressed="false">Docs &amp; tools</button>
+      <button class="filt" data-f="hack" aria-pressed="false">Hackathon prep</button>
+      <button class="filt" data-f="video" aria-pressed="false">Video</button>
+      <button class="filt" data-f="community" aria-pressed="false">Community</button>
+      <button class="filt" data-f="session" aria-pressed="false">Session material</button>
+    </div>
+
+    <div class="res-grid" id="resGrid">
+      <a class="res" data-cat="start" href="https://quantum.cloud.ibm.com/" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Do this first</span>
+        <h4>IBM Quantum Platform account</h4>
+        <p>Free. Get your API token before Quantum101 so you are not setting up during the session.</p>
+        <span class="host">quantum.cloud.ibm.com</span>
+      </a>
+      <a class="res" data-cat="start" href="https://quantum.cloud.ibm.com/docs/en/guides/install-qiskit" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Setup</span>
+        <h4>Install Qiskit</h4>
+        <p>Virtual environment, <span class="mono">pip install qiskit</span>, Jupyter. 64-bit only from v2.0.</p>
+        <span class="host">quantum.cloud.ibm.com/docs</span>
+      </a>
+      <a class="res" data-cat="start" href="https://www.ibm.com/quantum/qiskit" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Overview</span>
+        <h4>What Qiskit actually is</h4>
+        <p>The SDK, the transpiler, the primitives, and the runtime that ties them together.</p>
+        <span class="host">ibm.com/quantum/qiskit</span>
+      </a>
+      <a class="res" data-cat="learn" href="https://quantum.cloud.ibm.com/learning" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Course hub</span>
+        <h4>IBM Quantum Learning</h4>
+        <p>Successor to the old Qiskit Textbook — ten-plus free courses with runnable code.</p>
+        <span class="host">quantum.cloud.ibm.com/learning</span>
+      </a>
+      <a class="res" data-cat="learn" href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Course</span>
+        <h4>Basics of Quantum Information</h4>
+        <p>John Watrous. The single best foundation if you want the maths done properly.</p>
+        <span class="host">quantum.cloud.ibm.com/learning</span>
+      </a>
+      <a class="res" data-cat="video" href="https://www.youtube.com/playlist?list=PLOFEBzvs-VvoIfbpOb_geVnwFmbW6ij0m" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Lecture series</span>
+        <h4>Qiskit Global Summer School</h4>
+        <p>Graduate-level lectures, free. The natural next step after the fest.</p>
+        <span class="host">youtube.com</span>
+      </a>
+      <a class="res" data-cat="docs" href="https://quantum.cloud.ibm.com/docs" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Docs</span>
+        <h4>Qiskit &amp; IBM Quantum documentation</h4>
+        <p>API reference, transpilation guides, error mitigation. Keep this tab open at the hackathon.</p>
+        <span class="host">quantum.cloud.ibm.com/docs</span>
+      </a>
+      <a class="res" data-cat="docs" href="https://quantum.cloud.ibm.com/docs/en/tutorials" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Notebooks</span>
+        <h4>Official Qiskit tutorials</h4>
+        <p>End-to-end: CHSH, QAOA, VQE, quantum kernels, Grover, Shor. Steal the patterns.</p>
+        <span class="host">quantum.cloud.ibm.com/docs/tutorials</span>
+      </a>
+      <a class="res" data-cat="docs" href="https://github.com/Qiskit/qiskit" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Source</span>
+        <h4>Qiskit SDK on GitHub</h4>
+        <p>Python with a Rust core. The changelog is the fastest way to find what a function really does.</p>
+        <span class="host">github.com/Qiskit/qiskit</span>
+      </a>
+      <a class="res" data-cat="hack" href="https://github.com/qiskit-community/ibm-quantum-challenge-2024" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Best practice set</span>
+        <h4>IBM Quantum Challenge 2024</h4>
+        <p>Labs 0&ndash;4 plus a bonus, auto-graded, solutions in the repo. Do this one before the hackathon.</p>
+        <span class="host">github.com/qiskit-community</span>
+      </a>
+      <a class="res" data-cat="hack" href="https://github.com/qiskit-community/qdc-challenges-2025" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Practice</span>
+        <h4>QDC Challenges 2025</h4>
+        <p>More recent, closer to the current Qiskit 2.x API than the older challenge sets.</p>
+        <span class="host">github.com/qiskit-community</span>
+      </a>
+      <a class="res" data-cat="hack" href="https://github.com/qiskit-community/Quantum-Challenge-Grader" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Tool</span>
+        <h4>Quantum Challenge Grader</h4>
+        <p>Install it and the challenge notebooks above will check your answers as you go.</p>
+        <span class="host">github.com/qiskit-community</span>
+      </a>
+      <a class="res" data-cat="docs" href="https://github.com/Qiskit/ecosystem" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Libraries</span>
+        <h4>Qiskit Ecosystem</h4>
+        <p>Community tools that plug into Qiskit — chemistry, optimisation, ML, visualisation.</p>
+        <span class="host">github.com/Qiskit/ecosystem</span>
+      </a>
+      <a class="res" data-cat="video" href="https://www.youtube.com/@qiskit" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Video</span>
+        <h4>Qiskit on YouTube</h4>
+        <p>Lectures, seminars, release walkthroughs and the Qiskit patterns series.</p>
+        <span class="host">youtube.com/@qiskit</span>
+      </a>
+      <a class="res" data-cat="community" href="https://qisk.it/join-slack" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Community</span>
+        <h4>Qiskit Slack</h4>
+        <p>Where the developers answer. Join before the hackathon — #qiskit and #help are quick.</p>
+        <span class="host">qisk.it/join-slack</span>
+      </a>
+      <a class="res" data-cat="community" href="https://quantumcomputing.stackexchange.com/" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Q&amp;A</span>
+        <h4>Quantum Computing Stack Exchange</h4>
+        <p>For the conceptual questions. Search before asking — most first-year confusions are answered.</p>
+        <span class="host">quantumcomputing.stackexchange.com</span>
+      </a>
+      <a class="res" data-cat="community" href="https://www.ibm.com/quantum/blog/qiskit-fall-fest-2026" target="_blank" rel="noopener">
+        <span class="go">&#8599;</span><span class="res-tag">Official</span>
+        <h4>Qiskit Fall Fest 2026 &mdash; IBM announcement</h4>
+        <p>The post announcing this year's fest and its &ldquo;decade of quantum on the cloud&rdquo; theme.</p>
+        <span class="host">ibm.com/quantum/blog</span>
+      </a>
+      <div class="res soon" data-cat="session">
+        <span class="res-tag">Coming soon</span>
+        <h4>Quantum101 &mdash; slides &amp; notebook</h4>
+        <p>Posted here within a day of session 01, along with the solutions.</p>
+        <span class="host">Posted after the session</span>
+      </div>
+      <div class="res soon" data-cat="session">
+        <span class="res-tag">Coming soon</span>
+        <h4>Speaker slides</h4>
+        <p>Decks from the guest and professor talks, where the speakers are happy for us to.</p>
+        <span class="host">Posted after the session</span>
+      </div>
+      <div class="res soon" data-cat="session">
+        <span class="res-tag">Coming soon</span>
+        <h4>Hackathon problem statements</h4>
+        <p>Problem set, starter notebooks and submission instructions go up when the hackathon opens.</p>
+        <span class="host">Posted at the hackathon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FAQ ══════════════════ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Questions</p>
+        <h2 class="h2">Before you register.</h2>
+      </div>
+      <p class="lede">Anything missing, mail the organising team — the address is at the bottom.</p>
+    </div>
+    <div class="faq">
+      <details class="qa" open><summary>Who can attend?</summary>
+        <p>Any IIT Bombay student, any department, any year — undergraduate, postgraduate or PhD. Access for participants from outside campus will be confirmed alongside the schedule.</p></details>
+      <details class="qa"><summary>Do I need a physics background?</summary>
+        <p>No. Quantum101 assumes complex numbers and a Python loop. Everything else is built from there.</p></details>
+      <details class="qa"><summary>How much Python do I need?</summary>
+        <p>Enough to write a function and a loop. If you have used NumPy once, you are comfortably ahead.</p></details>
+      <details class="qa"><summary>Do I really get to use a quantum computer?</summary>
+        <p>Yes. A free IBM Quantum account puts your circuits on real superconducting processors. You will see the noise, the queue and the counts for yourself.</p></details>
+      <details class="qa"><summary>Can I come to only some sessions?</summary>
+        <p>Yes. Each session stands on its own. The hackathon assumes Quantum101, so do that one first if you can.</p></details>
+      <details class="qa"><summary>What should I bring?</summary>
+        <p>A laptop with Python and Qiskit installed, and an IBM Quantum account. Both links are in Resources.</p></details>
+      <details class="qa"><summary>Is it free?</summary>
+        <p>Every session is free. Places at the hackathon and the lab visits may be limited by room capacity, so registration order will matter for those.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ REGISTER ══════════════════ -->
+<section class="sec" id="register">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Register &amp; reach us</p>
+        <h2 class="h2">Put your name down.</h2>
+      </div>
+      <p class="lede">One email when dates land, one before each session. Nothing else.</p>
+    </div>
+    <div class="cta-grid">
+      <div class="cta-card">
+        <h3 class="h3">Register your interest</h3>
+        <p>The form goes live with the confirmed schedule. Until then the fastest route in is an email to the organising team.</p>
+        <a class="btn btn-primary" href="#" id="regBtn">Registration opens soon <span class="arw">&rarr;</span></a>
+        <p style="margin:16px 0 0;font-size:12.5px;color:var(--dim-2)">Placeholder — this button will point at the registration form once it is live.</p>
+      </div>
+      <div class="cta-card">
+        <h3 class="h3">Organising team</h3>
+        <p>Sessions, accessibility, collaborations and sponsorship all come to the same inbox.</p>
+        <dl class="det">
+          <dt>Email</dt><dd><span class="ph">your-email@iitb.ac.in</span></dd>
+          <dt>Instagram</dt><dd><span class="ph">@handle</span></dd>
+          <dt>LinkedIn</dt><dd><span class="ph">page URL</span></dd>
+          <dt>Venue</dt><dd>IIT Bombay, Powai, Mumbai 400076</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIYAAACGCAYAAAAYefKRAAAACXBIWXMAAC4jAAAuIwF4pT92AAAP0ElEQVR4nO1d7ZXrthG9zsn/x1SwSAWPrsBIBZYrCF1B5AosV+B1BeZWkN0Kwq0gUgWhKrBUAfIDhDkYAiRIgp/SPQdHpESRIHgxGMwMht8opfDEExx/WboCT6wTT2I84cRfl67ATEgBJOQTAGTA/8qqAEDBPneNb3aoY8iqpAAEgK8TXOMKTZgCwLn6vE1wncWwB2KkAA7QZPhuwXpcoAlSAHhfsB5RsFVipAAyaEK89PjfHbqHo/rs6uWy+kzQX/J8QBPkPeA6q8OWiCGgyZChmwyGAEX1WaImxNg6CGjCCGiCdhHmDk2OHBvST7ZADAngCOD7lmPuqEV4gVphnAMJar2mS4JdAZygSbJqrJkYWVV8esMddS9c05guoAmSwS9N7gBeq7LKYWaNxJDQDeZr1DfUY/faIaClXQbgi+P39RJEKbWWkiqlCuXGTSl1UkqJFdRzaMmUUmfP/ZXV70vX8c+yeAWUUolS6nUrDRahSOXvAIXSHWTpOi5OjIPS0oDjpvZHiD4EOSndYR6OGIlS6n2tjTJzyZSWjBylWlB6LHFR6WmIQm1bhxhTEqU7hAunJeo096zkBOBn9t0dWmvfwixjaqTQU3A+I/uEngLPNnOZixgJ9A1zI9XsN7wRnNDsQFfotophwe3EHMRIoI1QvBf8BD1/f8KNFFqKUkvqbNJ1amKk0KSgxp07tBFrFuZvHAk0Cbj190dMbFafMoLLRYoLtDUwlBQJtOXwDECRcoNuGBmjoivGDfoef2Pf/w493EyHibTaVDXtE7nqNw1NlXv2wvG6hNa+QMkc955Pdb05STH2HG2YrIFWVrIIbbsIMWKQIlFNSVEobSWVVTk5rnOcooFWWFxtfIp9nZjKp0uneIPWovvgCODXgHPw6xk3fNpy7qGhfzTyy4WC7ZewY0JCosX6wNXWURXSWMRIoG+eTq36kEKQciLn+US7gikB/CfwGmuBCSQGakKVrITARY4fEGkqG4sYZ9h2ChcpTPi+id42n20RTyE3yq+9Bxjy0LBEl9TJoGcoBtFMATHWleSwH8wndIUl6jD+FP2Cdg1CxC895op2cTpGpNM1KRyiKvx4V3BOCF6qwoe+K2qSFKjv1ZDjC3RHSjFy6BpLjAzAPx3fLxUWlmO6+X0x4r9GWvJtQzaBsI5jCPM9apP5JzRhXsgx7xhp4xkzlLjGuBAYRa5EvWgH5PNGzvkL2h90Up3DHL91M7tAPcyaIGOBYdK2q+1aMYYYIWM7DeMvEKZcvaN2tnWNmTlsifX3gPNvFRL1sByybAEAvsVQfWPgPNcXiqeUtjkc1fAgE8nOd6u+47aO3HHdpW0Mc5ZEadvOq/JbiEs1MOgpxoMzFTgOrYSjuIh3VvrhF6pp4Lmpxw3yMSVVzc6i1EDj15AK8EjnqSyOrpt04aZWEkC7kiJU8xn1bp++3tUT7LGtyyI4Bhm0MnnvOO6G/eoVsdBbIe+jfPIZAMVndfGpAkgOsE3dArbSOUoD3wlSaHeCy3wA9DSZ9yFGzi56R5Mkc64hLWAbgPY8I3HBTGcP1WfXlPaKHoavUGIIAP8j+x/QPfQV7Y4pbqmL6UxKAfyX7Hf5VbYOifDp6hVaegDAv8n3wZI1lBg5/PYCCb8F1AWjlxiSFNXnEF3lFcC/yH40J9JCEBhn4LpAt0lOvitQd957db7OzhlCDAFbWvi8pglqsXbAMD+BK7EJJQ0nENd7eonLGUHN4AK1X6WvSdyFT9SLvEvH7xK2BzpIaoQQI8cw62IKW/xN4QG9QDcsbdQP+KXPnE60KdI+8aG5CPxfAVtq+O7jT3QRIwHwB9kfEnhDIWFnpUmwP5d5DIS63UMhYUuNzhlKFzFOsBe+TKX5U1Erq0/aQ5dMuhYbsQJ1+oL6tq5oSjgLXcQoUYvpD2jdYWlIss1d2HSlG30A9PghEmptoX1DkMEO6vkHWoaiNmIcYE91Wk+0AmxFEV0SNKShVS1oM4nTP12xblIA+qaPZP+F7T9h6xUHtCihPmIksMVy7jlubcihp28GP6NjLH0wUJ/JF7SoBj5i8D/kIys0J7iUyJeoxEpRQk/xDUYR44Jt+SDOsNd6fod1KM1rQU62vblTfcSQnhNtBSfY7vpXBBh1HgTcZeDsNC5iSNjm7CJOfWbFUxH1o4SeTBhI10E+YhgYE+wWkeOpiPpApYZ0HdBFjCJeXRbBUxF1oyDbX+EYZl3EoObnwvH7lvBURN0o2L7kB3BipGx/q8MIxQlPRZTjBnvayp/7QxDjqYi6QZ+t5D+2EeMT+0GOpyLKUZJtwX/ki5opMfYgLSiOsGNETdTTWLSFJa7Bq+pDgTqkohE9xokhyPbUNyTI9eg2daWb30ITqbTBKKImRvQrlgkS4pK4INsl6p5Mt6cAP7ekdeFud7ozxs0uPAUYF3TTGWDSAe6a3wouqBdWlaillNkfCu/zphJjiKaeoo5qNttT9sKhAbMGRhHlWWhMIycYPmOZMsrMtKnvGvQ9sCXZ7sKFnFvCQww+I3GdWJISuyGoiOVjs6suQ5HDftfal2q/jHgNCh5E7BoqBfltSMfyZeAx74I1wcMl+92rLnRl1EmgDUIHtL/FsA1GDJqHXaIZ8zg3uCKaY7rFSi7FNETpFagJI9l3AmHSk+tRhii5o16C7lAdQ8KOJH5D+CIilyhbs0YO7GOxkoCd6M4M6SE6lOmwRspYij0lxgnNVyG4YML86PqGLWLPMaJmuJIIT45nESMkOduSL7udElwRNRbR01IViogbmguSBOqVgt1qAUmWcWLJNkqlc1fv/f1kBbtvsYI6TV1cr9oq6DFtUeISWknZg2htwyO65m/QOtbFd0AbMc7Vn0XcOq0Oj+aaT6HJX6JlahyqfF5R6xgF9idF9qyICtj2J58S6lU+2xrhBXpqZ6Z3fNV1iW0rpXtRRAVqIoTORpxos2P8AG0R7GPY+kTTjm/KFlBg/embBCvGstrHEn2FVhNS1LYqrx1DwibGN9UntX5KDHdA0YXBRfVJXdZt7uu5kGK59E0CzYQqINcPNVz58Ina7ECfgyGUlVClzY6RoM5ok6PW1o2IktA3EsrUL+TYkP+0uafbvjMYYnnlrnmjiI61iEpSKKZyvA1NsPInYrndqUlWkO2tubddiKGInhBmVe4LY9Yu0M+ranCDJ0F/l8QIhWGnq2cZsSjQdAoN9SbOiaUUUSMxSzSdjrH8ULTjWsM4J8YnavGWIo5TqY/eIMm2gG1D4e5qgzmy7fyMeu4/BCV02/IHWrJzFgPPPwS8LS2icWLQH10PYWoUkc8nMNxAl8BOHJNjuCKaY30WVcH2WyXGGfX0lP9xiygxbro5hSK6FtCO3zCNc5M4Zc3ax/45cMJ+FytJsl3yH9uIwf/8iDAWUYM9LVaiEqOhB3JilLB7iIxfn80hx/4WKwl0pLpweVfpQTJmbTaMvbnmJdsv+AFdxNhT4tUx2JtrntbduRTVRQyudW+5AWLihP0oopJsF64DXMQoYafieRJDYy+K6AG2fuGcfvsiuOjBMlKF9oAc21dEaUf3ptLyESMn2y94Sg2KrSui9Fl6jXU+YpzxHE582LIiyoeR3HdgWzAwZdMB21W0psAJ21REM7LdmpGx7e0DAvYrrzpffrJS+LyyQ1FWJYO9aj7olVILQsB+nq317XpfSYHaljE2N8VQSM+2QNMtv7R/JzQpSqx4ij44ocdLibqIkaHHy08GwATxSLYvMD4XxlZgyGTIYj6LiNdIYC+P6HwpUcjL8kqMT3Vk4kQF+r8y8pFBX0VaYvgi8gw9O3gIMU6wRVCI1JCkxDKr89dP8Trw/a7vx4BGcQNaUafa/m/QvV5gfFIUF0yeC1O6hqUSPTt3CDG4GHKdOMG4BCu+5Crmu7UjQz9FVKAZ/2rINiSI+gI9MXhHU284AviV7AflAQl9U/MJbqkhqt/4/NgHE/dYks8ypAIbQIG4i5Uk7JVlAmHD7wf09LlAs1NfEDhDCyUGv8AVmqFH+AnRlf9pb0gx/WIlI1EkuofpD+g2p1mDwicPPXIqZKob7+oxcmr4yitrj8MM15TVdUv/Y1FKsfwXXaVvJVwXvymljupxyUBLUrUHbZsz2S4mbiupmolgDNI+5xpyYYrbhDe51XL0PBjeblNKk3d2vde+5xhy0ZxdNFePkZ4opKTKlhhdyCJf35VCaVDnDVU+uQJUoql0viFe4vYtwtUuJt3AGVppPKCpMH6L8VNyYypwpd8clqZyIDMPHT2hqJgrI/eINRfeU3PPcZmjrYZIpqPSQ0abhHofej9DJIZB7mGoCxfUpl1T5nYiTY0bwn0RJ4Q7tCTs5K6hluRRq/THECOBnhMPNfPS5O6usiVwG0bX8JAA+IPs/wR9z8afJDA+jcQoh+cYYgC68gXsG/gF9Y2N9Q0YzyM1jXMzeYnliSThzkbUhjPitM8Z2iRPn4GV62IIxhIDaPoJ7tCkKDEsdXEMcIfbVPD16imI8YnalUC9rDnsIb3TpR6CGMQAmgnbL9Bk8I1vEjVpBCl7ccV3zQQE7GgqA5ohB+jOiJjDJkVXuwcjFjGAeJWkoXiSfE+3x46/U6PLWfUO2wv9N/Rvpxx2e9+hCRdFqY9JDJcyGo3BHeDxEb7vfDBk7OvmL1H35gNsqfkBPczye89hP9A32EG6IeDnuEO3c7ThMyYxgGXJsTRc935HHSNhYlZe2O9GHwtFjolJAWCwgautJKp2HBmc1WOYzfuYxG+qp2NLNd0RQ84RVKZqIBc5JruJlZVE+T2cBkXPtnCdc9L2jD2UUPhE6xHbXJ/SFym07kCV0DPqZP19zpOj2Y4SE07JpySGQY6m6fw3bHOl+Nw4QLcfd8wdMLGdZg5iAE07B6CV0gOWt1quFb42k5hBkW9buxoTR+gljnS951do1o+20u0MKXS7cFK8YcZ3qMxFDKBOoEpzSn6BTrL6ju3lmZgCJ2hnHNcnfkR/W8c4LKS15w5N3cSOLj2rWKJI1ZzFqeq7RWZySzbGQbnn/KV6nAAfoZrxmQa94zRjlqUbxic9lNLz9r0SRLTc93kN9710A5kilX9dxJ4I0kaIm9LhgUvXcVXEMCVTfpNyqba7mOmg/EOGUposq7qvuewYfZBAT299yx+NY2rtEekCeiaRwR9n8gY9EylnqE8vrJEYBoYgGfwNuzaSmCUCB7RHZ62WEAZrJgZFVpWuCGnzpkBTpgYNWzygPXjILAR/xQZCELZCDAMBLUV4XIMPF9hxkjcMCx6W5FOg39sjN7kQa2vEoDDey1CSuHCFmyQJxi2LKFCTYfXSwYUtE4NCoH5hsMT88aBzD2GTYy/E4BColyuYSPQY+a+MhDmzsjvslRhtkGS7LWC4INtGP3kYPCIxngjAnG73JzaE/wOJtqFbU3Kv4wAAAABJRU5ErkJggg==" alt="">
+      <div>
+        <b>Qiskit Fall Fest 2026 &middot; IIT Bombay</b>
+        <p>A student-organised event held under the global Qiskit Fall Fest programme, with support from IBM Quantum. Qiskit and IBM Quantum are trademarks of International Business Machines Corporation.</p>
+      </div>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h5>This site</h5>
+        <a href="#try">Try it</a>
+        <a href="#events">Events</a>
+        <a href="#resources">Resources</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h5>Official</h5>
+        <a href="https://www.ibm.com/quantum/blog/qiskit-fall-fest-2026" target="_blank" rel="noopener">Fall Fest 2026 &#8599;</a>
+        <a href="https://www.ibm.com/quantum/qiskit" target="_blank" rel="noopener">Qiskit &#8599;</a>
+        <a href="https://quantum.cloud.ibm.com/learning" target="_blank" rel="noopener">IBM Quantum Learning &#8599;</a>
+        <a href="https://qisk.it/join-slack" target="_blank" rel="noopener">Qiskit Slack &#8599;</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <span class="ph">your-email@iitb.ac.in</span>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-bar">
+    <p>Indian Institute of Technology Bombay &middot; Powai, Mumbai 400076<br>Not an official IBM publication. Event details subject to confirmation.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+var REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ══════════ shared canvas helpers ══════════ */
+
+function fit(cv){
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var w = cv.clientWidth || cv.offsetWidth || 300;
+  var h = cv.clientHeight || cv.offsetHeight || 300;
+  if(cv.width !== Math.round(w*dpr) || cv.height !== Math.round(h*dpr)){
+    cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr);
+  }
+  var ctx = cv.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  return { ctx: ctx, w: w, h: h };
+}
+
+/* One ticker. Renderers register; only on-screen ones run. */
+var renderers = [];
+function register(el, draw){
+  var r = { el: el, draw: draw, on: true };
+  renderers.push(r);
+  if('IntersectionObserver' in window){
+    r.on = false;
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ r.on = e.isIntersecting; });
+    }, { rootMargin: '160px' }).observe(el);
+  }
+  return r;
+}
+var t0 = performance.now();
+function tick(now){
+  var t = (now - t0) / 1000;
+  for(var i=0;i<renderers.length;i++){
+    if(renderers[i].on){ try{ renderers[i].draw(t); }catch(e){} }
+  }
+  requestAnimationFrame(tick);
+}
+if(REDUCE){
+  // draw a single frame of everything, then stop
+  setTimeout(function(){ renderers.forEach(function(r){ try{ r.draw(0.7); }catch(e){} }); }, 60);
+} else {
+  requestAnimationFrame(tick);
+}
+window.addEventListener('resize', function(){
+  if(REDUCE) renderers.forEach(function(r){ try{ r.draw(0.7); }catch(e){} });
+});
+
+/* ══════════ nav ══════════ */
+
+var burger = document.getElementById('burger'), mm = document.getElementById('mobileMenu');
+if(burger){
+  burger.addEventListener('click', function(){
+    var open = mm.hasAttribute('hidden');
+    if(open){ mm.removeAttribute('hidden'); } else { mm.setAttribute('hidden',''); }
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mm.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){ mm.setAttribute('hidden',''); burger.setAttribute('aria-expanded','false'); }
+  });
+}
+
+/* ══════════ marquee ══════════ */
+
+var mq = document.getElementById('mq');
+if(mq){
+  var items = ['A decade of <b>quantum on the cloud</b>','32,000+ participants in 2025','150 student organisers worldwide',
+               'Qiskit <b>2.x</b>','IBM Quantum','IIT Bombay &middot; Powai','Free &amp; open to every department','Oct&ndash;Nov 2026'];
+  var run = items.map(function(s){ return '<span>' + s + '<b> &nbsp;&bull;</b></span>'; }).join('');
+  mq.innerHTML = run + run;
+}
+
+/* ══════════ hero interference field ══════════ */
+/* Two coherent sources. Real two-slit interference, computed at low
+   resolution and scaled up — the fringes are the physics, not a gradient. */
+
+(function(){
+  var cv = document.getElementById('field'); if(!cv) return;
+  var LW = 148, LH = 92;
+  var off = document.createElement('canvas'); off.width = LW; off.height = LH;
+  var octx = off.getContext('2d');
+  var img = octx.createImageData(LW, LH);
+
+  register(cv, function(t){
+    var f = fit(cv), ctx = f.ctx;
+    var d = img.data, k = 0.55, w = 1.9;
+    var s1x = LW*0.30, s1y = LH*0.72, s2x = LW*0.78, s2y = LH*0.26;
+    var i = 0;
+    for(var y=0; y<LH; y++){
+      for(var x=0; x<LW; x++){
+        var dx1 = x - s1x, dy1 = (y - s1y)*1.35;
+        var dx2 = x - s2x, dy2 = (y - s2y)*1.35;
+        var r1 = Math.sqrt(dx1*dx1 + dy1*dy1);
+        var r2 = Math.sqrt(dx2*dx2 + dy2*dy2);
+        var a1 = Math.cos(k*r1 - w*t) / (1 + r1*0.055);
+        var a2 = Math.cos(k*r2 - w*t + 1.1) / (1 + r2*0.055);
+        var v = a1 + a2;
+        var I = v*v;                       // intensity
+        var g = Math.min(1, I*0.85);
+        d[i++] = 40 + g*98;                // R -> purple
+        d[i++] = 18 + g*40;
+        d[i++] = 66 + g*186;               // B strong
+        d[i++] = 255;
+      }
+    }
+    octx.putImageData(img, 0, 0);
+    ctx.clearRect(0,0,f.w,f.h);
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(off, 0, 0, LW, LH, 0, 0, f.w, f.h);
+  });
+})();
+
+/* ══════════ Bloch sphere renderer ══════════ */
+
+function makeBloch(cv, opts){
+  opts = opts || {};
+  var cam = { yaw: opts.yaw != null ? opts.yaw : -0.55, pitch: opts.pitch != null ? opts.pitch : 0.34 };
+
+  function proj(p, cx, cy, R){
+    var cy0 = Math.cos(cam.yaw), sy0 = Math.sin(cam.yaw);
+    var x1 = p[0]*cy0 - p[1]*sy0, y1 = p[0]*sy0 + p[1]*cy0, z1 = p[2];
+    var cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch);
+    var y2 = y1*cp - z1*sp, z2 = y1*sp + z1*cp;
+    return { X: cx + x1*R, Y: cy - z2*R, d: y2 };
+  }
+
+  function circle(ctx, cx, cy, R, axis, tint, base){
+    var N = 96, prev = null;
+    for(var i=0;i<=N;i++){
+      var a = i/N * Math.PI*2, p;
+      if(axis === 'z') p = [Math.cos(a), Math.sin(a), 0];
+      else if(axis === 'x') p = [0, Math.cos(a), Math.sin(a)];
+      else p = [Math.cos(a), 0, Math.sin(a)];
+      var q = proj(p, cx, cy, R);
+      if(prev){
+        var dep = (prev.d + q.d)/2;
+        var front = (1 - dep) / 2;                 // 1 = nearest
+        ctx.strokeStyle = tint.replace('%A%', (base * (0.18 + front*0.82)).toFixed(3));
+        ctx.beginPath(); ctx.moveTo(prev.X, prev.Y); ctx.lineTo(q.X, q.Y); ctx.stroke();
+      }
+      prev = q;
+    }
+  }
+
+  function parallel(ctx, cx, cy, R, zLev, tint, base){
+    var r = Math.sqrt(Math.max(0, 1 - zLev*zLev)), N = 80, prev = null;
+    for(var i=0;i<=N;i++){
+      var a = i/N*Math.PI*2;
+      var q = proj([r*Math.cos(a), r*Math.sin(a), zLev], cx, cy, R);
+      if(prev){
+        var front = (1 - (prev.d+q.d)/2)/2;
+        ctx.strokeStyle = tint.replace('%A%', (base*(0.14 + front*0.86)).toFixed(3));
+        ctx.beginPath(); ctx.moveTo(prev.X,prev.Y); ctx.lineTo(q.X,q.Y); ctx.stroke();
+      }
+      prev = q;
+    }
+  }
+
+  function meridian(ctx, cx, cy, R, lon, tint, base){
+    var N = 72, prev = null, cl = Math.cos(lon), sl = Math.sin(lon);
+    for(var i=0;i<=N;i++){
+      var a = i/N*Math.PI*2;
+      var q = proj([Math.sin(a)*cl, Math.sin(a)*sl, Math.cos(a)], cx, cy, R);
+      if(prev){
+        var front = (1 - (prev.d+q.d)/2)/2;
+        ctx.strokeStyle = tint.replace('%A%', (base*(0.10 + front*0.9)).toFixed(3));
+        ctx.beginPath(); ctx.moveTo(prev.X,prev.Y); ctx.lineTo(q.X,q.Y); ctx.stroke();
+      }
+      prev = q;
+    }
+  }
+
+  function draw(vec, showLabels){
+    var f = fit(cv), ctx = f.ctx, w = f.w, h = f.h;
+    ctx.clearRect(0,0,w,h);
+    var cx = w/2, cy = h/2, R = Math.min(w,h)*0.34;
+    var PU = 'rgba(190,149,255,%A%)', CY = 'rgba(61,219,217,%A%)';
+
+    ctx.lineWidth = 1;
+    // glow
+    var glow = ctx.createRadialGradient(cx,cy,R*0.2,cx,cy,R*1.5);
+    glow.addColorStop(0,'rgba(138,63,252,0.13)'); glow.addColorStop(1,'rgba(138,63,252,0)');
+    ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(cx,cy,R*1.5,0,Math.PI*2); ctx.fill();
+
+    for(var zz=-0.66; zz<0.7; zz+=0.33){ if(Math.abs(zz)>0.05) parallel(ctx,cx,cy,R,zz,PU,0.20); }
+    for(var m=0;m<3;m++) meridian(ctx,cx,cy,R, m*Math.PI/3, PU, 0.20);
+    circle(ctx,cx,cy,R,'z',PU,0.46);                       // equator
+    ctx.lineWidth = 1;
+    circle(ctx,cx,cy,R,'x',PU,0.14);
+
+    // vertical axis through poles
+    var top = proj([0,0,1.16],cx,cy,R), bot = proj([0,0,-1.16],cx,cy,R);
+    ctx.strokeStyle = 'rgba(190,149,255,0.24)'; ctx.setLineDash([3,4]);
+    ctx.beginPath(); ctx.moveTo(top.X,top.Y); ctx.lineTo(bot.X,bot.Y); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // state vector
+    var tip = proj([vec[0],vec[1],vec[2]],cx,cy,R);
+    var o   = proj([0,0,0],cx,cy,R);
+    var eq  = proj([vec[0],vec[1],0],cx,cy,R);
+
+    // drop line to equatorial plane
+    ctx.strokeStyle = 'rgba(61,219,217,0.32)'; ctx.setLineDash([2,4]); ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(tip.X,tip.Y); ctx.lineTo(eq.X,eq.Y); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(o.X,o.Y); ctx.lineTo(eq.X,eq.Y); ctx.stroke();
+    ctx.setLineDash([]);
+
+    var gd = ctx.createLinearGradient(o.X,o.Y,tip.X,tip.Y);
+    gd.addColorStop(0,'rgba(138,63,252,0.9)'); gd.addColorStop(1,'#BE95FF');
+    ctx.strokeStyle = gd; ctx.lineWidth = Math.max(2, R*0.022);
+    ctx.beginPath(); ctx.moveTo(o.X,o.Y); ctx.lineTo(tip.X,tip.Y); ctx.stroke();
+
+    ctx.fillStyle = 'rgba(190,149,255,0.22)';
+    ctx.beginPath(); ctx.arc(tip.X,tip.Y, R*0.075, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#F5F2FB';
+    ctx.beginPath(); ctx.arc(tip.X,tip.Y, R*0.032, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(190,149,255,0.75)';
+    ctx.beginPath(); ctx.arc(o.X,o.Y, R*0.018, 0, Math.PI*2); ctx.fill();
+
+    if(showLabels !== false){
+      var fs = Math.max(10, R*0.115);
+      ctx.font = '500 ' + fs + 'px "IBM Plex Mono", monospace';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      var labels = [
+        [[0,0,1.30], '|0⟩', PU], [[0,0,-1.30], '|1⟩', PU],
+        [[1.28,0,0], '|+⟩', CY], [[-1.28,0,0], '|−⟩', CY],
+        [[0,1.28,0], '|+i⟩', CY], [[0,-1.28,0], '|−i⟩', CY]
+      ];
+      labels.forEach(function(L){
+        var q = proj(L[0],cx,cy,R);
+        var front = (1 - q.d)/2;
+        ctx.fillStyle = L[2].replace('%A%', (0.30 + front*0.62).toFixed(2));
+        ctx.fillText(L[1], q.X, q.Y);
+      });
+    }
+  }
+  return { draw: draw, cam: cam };
+}
+
+/* ══════════ hero bloch — precessing, draggable ══════════ */
+
+(function(){
+  var cv = document.getElementById('bloch'), wrap = document.getElementById('blochWrap');
+  if(!cv) return;
+  var B = makeBloch(cv);
+  var drag = null, spin = true;
+
+  function pointer(e){ return e.touches ? e.touches[0] : e; }
+  wrap.addEventListener('pointerdown', function(e){
+    drag = { x: e.clientX, y: e.clientY, yaw: B.cam.yaw, pitch: B.cam.pitch };
+    spin = false; wrap.setPointerCapture && wrap.setPointerCapture(e.pointerId);
+  });
+  wrap.addEventListener('pointermove', function(e){
+    if(!drag) return;
+    B.cam.yaw   = drag.yaw   + (e.clientX - drag.x) * 0.008;
+    B.cam.pitch = Math.max(-1.25, Math.min(1.25, drag.pitch + (e.clientY - drag.y) * 0.006));
+    if(REDUCE) render(0.7);
+  });
+  window.addEventListener('pointerup', function(){ drag = null; });
+
+  var theta = 1.05;
+  function render(t){
+    var phi = spin ? t*0.55 : 2.1;
+    var v = [Math.sin(theta)*Math.cos(phi), Math.sin(theta)*Math.sin(phi), Math.cos(theta)];
+    B.draw(v);
+  }
+  register(cv, render);
+})();
+
+/* ══════════ gate lab ══════════ */
+
+(function(){
+  var cv = document.getElementById('labBloch'); if(!cv) return;
+  var B = makeBloch(cv, { yaw: -0.6, pitch: 0.36 });
+  var H = Math.SQRT1_2, R2 = Math.SQRT1_2;
+
+  // complex 2x2 unitaries: [a.re,a.im, b.re,b.im, c.re,c.im, d.re,d.im]
+  var GATES = {
+    H:  [H,0,  H,0,  H,0, -H,0],
+    X:  [0,0,  1,0,  1,0,  0,0],
+    Y:  [0,0,  0,-1, 0,1,  0,0],
+    Z:  [1,0,  0,0,  0,0, -1,0],
+    S:  [1,0,  0,0,  0,0,  0,1],
+    T:  [1,0,  0,0,  0,0,  R2,R2],
+    SX: [0.5,0.5, 0.5,-0.5, 0.5,-0.5, 0.5,0.5]
+  };
+  var LABEL = { H:'H', X:'X', Y:'Y', Z:'Z', S:'S', T:'T', SX:'√X' };
+
+  var st = [1,0, 0,0];            // alpha.re, alpha.im, beta.re, beta.im
+  var applied = [];
+  var cur = [0,0,1], tgt = [0,0,1];
+
+  function apply(g){
+    var m = GATES[g], ar = st[0], ai = st[1], br = st[2], bi = st[3];
+    var nar = m[0]*ar - m[1]*ai + m[2]*br - m[3]*bi;
+    var nai = m[0]*ai + m[1]*ar + m[2]*bi + m[3]*br;
+    var nbr = m[4]*ar - m[5]*ai + m[6]*br - m[7]*bi;
+    var nbi = m[4]*ai + m[5]*ar + m[6]*bi + m[7]*br;
+    st = [nar, nai, nbr, nbi];
+    applied.push(g); if(applied.length > 14) applied.shift();
+    sync();
+  }
+  function bloch(){
+    var ar=st[0], ai=st[1], br=st[2], bi=st[3];
+    return [ 2*(ar*br + ai*bi), 2*(ar*bi - ai*br), (ar*ar+ai*ai) - (br*br+bi*bi) ];
+  }
+
+  function fmtC(re, im){
+    var r = Math.abs(re) < 5e-4 ? 0 : re, i = Math.abs(im) < 5e-4 ? 0 : im;
+    var sgn = function(v){ return (v < 0 ? '−' : '') + Math.abs(v).toFixed(3); };
+    if(i === 0) return sgn(r);
+    if(r === 0) return sgn(i) + 'i';
+    return '(' + sgn(r) + (i < 0 ? ' − ' : ' + ') + Math.abs(i).toFixed(3) + 'i)';
+  }
+
+  var ket = document.getElementById('ket');
+  var f0 = document.getElementById('f0'), f1 = document.getElementById('f1');
+  var v0 = document.getElementById('v0'), v1 = document.getElementById('v1');
+
+  function sync(){
+    tgt = bloch();
+    var p0 = st[0]*st[0] + st[1]*st[1], p1 = st[2]*st[2] + st[3]*st[3];
+    f0.style.width = (p0*100).toFixed(2) + '%';
+    f1.style.width = (p1*100).toFixed(2) + '%';
+    v0.textContent = (p0*100).toFixed(1) + '%';
+    v1.textContent = (p1*100).toFixed(1) + '%';
+    ket.innerHTML =
+      '<span class="op">|ψ⟩ =</span> <span class="amp">' + fmtC(st[0],st[1]) + '</span> <span class="op">|0⟩</span><br>' +
+      '<span class="op">&nbsp; &nbsp; &nbsp;+</span> <span class="amp cy">' + fmtC(st[2],st[3]) + '</span> <span class="op">|1⟩</span>';
+    drawCirc();
+  }
+
+  /* circuit strip */
+  var cc = document.getElementById('circCanvas');
+  function drawCirc(){
+    var need = 74 + applied.length*40 + 46;
+    cc.style.width = Math.max(need, cc.parentNode.clientWidth) + 'px';
+    var f = fit(cc), ctx = f.ctx, w = f.w, h = f.h, y = h/2;
+    ctx.clearRect(0,0,w,h);
+    var wireEnd = 66 + applied.length*40 + 40;
+    ctx.strokeStyle = '#3A2F58'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(52,y); ctx.lineTo(wireEnd,y); ctx.stroke();
+
+    ctx.font = '500 13px "IBM Plex Mono", monospace';
+    ctx.fillStyle = '#9C90BA'; ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.fillText('q  |0⟩', 6, y);
+
+    var x = 66;
+    applied.forEach(function(g){
+      ctx.fillStyle = '#191428'; ctx.strokeStyle = '#8A3FFC'; ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.rect(x, y-14, 28, 28); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#F5F2FB'; ctx.font = '500 13px "IBM Plex Mono", monospace';
+      ctx.textAlign='center';
+      ctx.fillText(LABEL[g], x+14, y+0.5);
+      x += 40;
+    });
+    // measurement
+    ctx.strokeStyle = '#3DDBD9'; ctx.fillStyle = 'rgba(61,219,217,0.07)'; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.rect(x, y-14, 30, 28); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = '#3DDBD9'; ctx.lineWidth = 1.1;
+    ctx.beginPath(); ctx.arc(x+15, y+6, 8, Math.PI, 0); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x+15, y+6); ctx.lineTo(x+22, y-4); ctx.stroke();
+  }
+
+  document.getElementById('gates').addEventListener('click', function(e){
+    var b = e.target.closest('.gate'); if(!b) return;
+    var g = b.getAttribute('data-g');
+    if(g === 'RESET'){ st = [1,0,0,0]; applied = []; sync(); return; }
+    apply(g);
+  });
+
+  register(cv, function(){
+    for(var i=0;i<3;i++) cur[i] += (tgt[i]-cur[i]) * 0.18;
+    B.draw(cur);
+  });
+
+  sync();
+  window.addEventListener('resize', drawCirc);
+})();
+
+/* ══════════ heavy-hex lattice ══════════ */
+
+(function(){
+  var cv = document.getElementById('lattice'); if(!cv) return;
+
+  // Build a genuine heavy-hex graph: honeycomb vertices, then one extra
+  // "link" qubit on the midpoint of every edge. Max degree 3.
+  var nodes = [], edges = [];
+  (function build(){
+    var vmap = {}, emap = {}, S = 1;
+    function key(x,y){ return Math.round(x*100)/100 + ',' + Math.round(y*100)/100; }
+    function vert(x,y){
+      var k = key(x,y);
+      if(vmap[k] === undefined){ vmap[k] = nodes.length; nodes.push({x:x, y:y, big:true, deg:0}); }
+      return vmap[k];
+    }
+    for(var r=0;r<4;r++){
+      for(var q=0;q<6;q++){
+        var cx = S*Math.sqrt(3)*(q + (r%2)/2), cy = S*1.5*r;
+        var vs = [];
+        for(var i=0;i<6;i++){
+          var a = Math.PI/180*(60*i - 30);
+          vs.push(vert(cx + S*Math.cos(a), cy + S*Math.sin(a)));
+        }
+        for(var i2=0;i2<6;i2++){
+          var A = vs[i2], Bv = vs[(i2+1)%6];
+          var ek = Math.min(A,Bv) + '-' + Math.max(A,Bv);
+          if(emap[ek]) continue;
+          emap[ek] = 1;
+          var mid = nodes.length;
+          nodes.push({ x:(nodes[A].x+nodes[Bv].x)/2, y:(nodes[A].y+nodes[Bv].y)/2, big:false, deg:0 });
+          edges.push([A,mid]); edges.push([mid,Bv]);
+          nodes[A].deg++; nodes[Bv].deg++; nodes[mid].deg = 2;
+        }
+      }
+    }
+  })();
+
+  // adjacency for path walks
+  var adj = nodes.map(function(){ return []; });
+  edges.forEach(function(e,i){ adj[e[0]].push([e[1],i]); adj[e[1]].push([e[0],i]); });
+
+  var xs = nodes.map(function(n){return n.x;}), ys = nodes.map(function(n){return n.y;});
+  var minX = Math.min.apply(null,xs), maxX = Math.max.apply(null,xs);
+  var minY = Math.min.apply(null,ys), maxY = Math.max.apply(null,ys);
+
+  var path = [], pathT = 0;
+  function newPath(){
+    var cur = Math.floor(Math.random()*nodes.length), seen = {}, p = [cur];
+    for(var i=0;i<11;i++){
+      var opts = adj[cur].filter(function(a){ return !seen[a[1]]; });
+      if(!opts.length) break;
+      var pick = opts[Math.floor(Math.random()*opts.length)];
+      seen[pick[1]] = 1; cur = pick[0]; p.push(cur);
+    }
+    path = p; pathT = 0;
+  }
+  newPath();
+
+  register(cv, function(t){
+    var f = fit(cv), ctx = f.ctx, w = f.w, h = f.h;
+    ctx.clearRect(0,0,w,h);
+    var padX = 26, padT = 24, padB = 54;
+    var sc = Math.min((w-padX*2)/(maxX-minX), (h-padT-padB)/(maxY-minY));
+    var ox = (w - (maxX-minX)*sc)/2 - minX*sc;
+    var oy = padT - minY*sc;
+    var P = function(n){ return [n.x*sc + ox, n.y*sc + oy]; };
+
+    // couplers
+    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(138,63,252,0.28)';
+    ctx.beginPath();
+    edges.forEach(function(e){
+      var a = P(nodes[e[0]]), b = P(nodes[e[1]]);
+      ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]);
+    });
+    ctx.stroke();
+
+    // qubits
+    nodes.forEach(function(n,i){
+      var p = P(n);
+      var pulse = 0.5 + 0.5*Math.sin(t*1.3 + i*0.7);
+      var r = n.big ? 3.1 : 2.0;
+      ctx.fillStyle = 'rgba(190,149,255,' + (0.28 + pulse*0.30).toFixed(3) + ')';
+      ctx.beginPath(); ctx.arc(p[0],p[1], r, 0, Math.PI*2); ctx.fill();
+    });
+
+    // a job running across the lattice
+    if(!REDUCE){
+      pathT += 0.021;
+      if(pathT > path.length - 1 + 1.4){ newPath(); }
+      var head = Math.min(pathT, path.length - 1);
+      for(var s=0; s<path.length-1; s++){
+        var age = head - s;
+        if(age <= 0) continue;
+        var a = P(nodes[path[s]]), b = P(nodes[path[s+1]]);
+        var frac = Math.min(1, age);
+        var fade = Math.max(0, 1 - (age - 1)/3.2);
+        ctx.strokeStyle = 'rgba(61,219,217,' + (0.85*fade).toFixed(3) + ')';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath(); ctx.moveTo(a[0],a[1]);
+        ctx.lineTo(a[0] + (b[0]-a[0])*frac, a[1] + (b[1]-a[1])*frac); ctx.stroke();
+      }
+      var si = Math.floor(head), fr = head - si;
+      if(si < path.length-1){
+        var a2 = P(nodes[path[si]]), b2 = P(nodes[path[si+1]]);
+        var hx = a2[0] + (b2[0]-a2[0])*fr, hy = a2[1] + (b2[1]-a2[1])*fr;
+        var g = ctx.createRadialGradient(hx,hy,0,hx,hy,11);
+        g.addColorStop(0,'rgba(61,219,217,0.85)'); g.addColorStop(1,'rgba(61,219,217,0)');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(hx,hy,11,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#EAFFFE'; ctx.beginPath(); ctx.arc(hx,hy,2.1,0,Math.PI*2); ctx.fill();
+      }
+    }
+  });
+})();
+
+/* ══════════ Bell state shots ══════════ */
+
+(function(){
+  var btn = document.getElementById('runBtn'); if(!btn) return;
+  var ids = ['00','01','10','11'], SH = 1024;
+  var els = ids.map(function(k){ return { bar: document.getElementById('b'+k), n: document.getElementById('n'+k) }; });
+  var st = document.getElementById('runSt');
+  var raf = null;
+
+  function sample(){
+    var e01 = 5 + Math.floor(Math.random()*16);
+    var e10 = 5 + Math.floor(Math.random()*16);
+    var rest = SH - e01 - e10;
+    var a = Math.round(rest/2 + (Math.random()-0.5)*38);
+    return [a, e01, e10, rest - a];
+  }
+  function run(){
+    if(raf) cancelAnimationFrame(raf);
+    var target = sample(), start = performance.now(), DUR = 1150;
+    st.textContent = 'running · 1024 shots';
+    (function step(now){
+      var p = Math.min(1, (now - start)/DUR);
+      var e = 1 - Math.pow(1-p, 3);
+      var mx = Math.max.apply(null, target);
+      target.forEach(function(v,i){
+        var c = Math.round(v*e);
+        els[i].n.textContent = c;
+        els[i].bar.style.width = ((c/mx)*100).toFixed(1) + '%';
+      });
+      if(p < 1){ raf = requestAnimationFrame(step); }
+      else { st.textContent = 'job complete · ideal simulator'; }
+    })(start);
+  }
+  btn.addEventListener('click', run);
+
+  if('IntersectionObserver' in window){
+    var once = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ run(); once.disconnect(); } });
+    }, { rootMargin: '-40px' });
+    once.observe(btn.closest('.hw') || btn);
+  } else { run(); }
+})();
+
+/* ══════════ event glyphs ══════════ */
+
+document.querySelectorAll('.ev-gl').forEach(function(cv){
+  var kind = cv.getAttribute('data-glyph');
+  var seed = Math.random()*10;
+  register(cv, function(t){
+    var f = fit(cv), ctx = f.ctx, w = f.w, h = f.h, y = h/2;
+    ctx.clearRect(0,0,w,h);
+    ctx.lineWidth = 1.3;
+    var PU = '#8A3FFC', PL = '#BE95FF', CY = '#3DDBD9';
+
+    if(kind === 'superpose'){
+      // one path becomes two
+      ctx.strokeStyle = 'rgba(190,149,255,0.55)';
+      [[-1],[1]].forEach(function(s){
+        ctx.beginPath(); ctx.moveTo(4,y);
+        ctx.bezierCurveTo(w*0.45,y, w*0.55, y + s[0]*h*0.30, w-6, y + s[0]*h*0.30);
+        ctx.stroke();
+      });
+      var ph = (t*0.7 + seed) % 1;
+      [-1,1].forEach(function(s){
+        var x = 4 + (w-10)*ph, yy = y + s*h*0.30*Math.min(1, Math.max(0,(ph-0.35)/0.65));
+        ctx.fillStyle = s < 0 ? PL : CY;
+        ctx.globalAlpha = 0.35 + 0.65*Math.sin(Math.PI*ph);
+        ctx.beginPath(); ctx.arc(x, yy, 2.6, 0, Math.PI*2); ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    }
+    else if(kind === 'wave'){
+      for(var k=0;k<2;k++){
+        ctx.strokeStyle = k ? 'rgba(61,219,217,0.55)' : 'rgba(190,149,255,0.7)';
+        ctx.beginPath();
+        for(var x=2;x<=w-2;x+=2){
+          var v = Math.sin(x*0.13 - t*2.1 + k*1.7 + seed) * h*0.30;
+          if(x===2) ctx.moveTo(x, y+v); else ctx.lineTo(x, y+v);
+        }
+        ctx.stroke();
+      }
+    }
+    else if(kind === 'decohere'){
+      ctx.strokeStyle = 'rgba(190,149,255,0.75)';
+      ctx.beginPath();
+      for(var x2=2;x2<=w-2;x2+=1.6){
+        var env = Math.exp(-x2/(w*0.42));
+        var noise = (1-env) * (Math.sin(x2*1.9 + t*7 + seed)*0.5 + Math.sin(x2*3.3 - t*5)*0.5);
+        var v2 = (Math.sin(x2*0.30 - t*2.4) * env + noise*0.55) * h*0.30;
+        if(x2===2) ctx.moveTo(x2, y+v2); else ctx.lineTo(x2, y+v2);
+      }
+      ctx.stroke();
+    }
+    else if(kind === 'circuit'){
+      var rows = [y-h*0.22, y+h*0.22];
+      ctx.strokeStyle = 'rgba(138,63,252,0.4)';
+      rows.forEach(function(ry){ ctx.beginPath(); ctx.moveTo(3,ry); ctx.lineTo(w-3,ry); ctx.stroke(); });
+      var gx = [w*0.24, w*0.52, w*0.78];
+      var lit = Math.floor((t*1.1 + seed) % 3);
+      gx.forEach(function(x3,i){
+        var on = i === lit;
+        ctx.strokeStyle = on ? PL : 'rgba(138,63,252,0.5)';
+        ctx.fillStyle = on ? 'rgba(190,149,255,0.18)' : 'rgba(25,20,40,1)';
+        var ry = rows[i%2];
+        ctx.beginPath(); ctx.rect(x3-7, ry-7, 14, 14); ctx.fill(); ctx.stroke();
+        if(i===1){
+          ctx.strokeStyle = on ? PL : 'rgba(138,63,252,0.5)';
+          ctx.beginPath(); ctx.moveTo(x3, rows[1]); ctx.lineTo(x3, rows[0]); ctx.stroke();
+          ctx.fillStyle = on ? PL : 'rgba(138,63,252,0.7)';
+          ctx.beginPath(); ctx.arc(x3, rows[0], 2.6, 0, Math.PI*2); ctx.fill();
+        }
+      });
+    }
+    else if(kind === 'fridge'){
+      // dilution refrigerator stages
+      var stages = 5;
+      for(var i3=0;i3<stages;i3++){
+        var ww = w*(0.72 - i3*0.11), yy2 = 6 + i3*((h-12)/(stages-1));
+        ctx.strokeStyle = 'rgba(190,149,255,' + (0.28 + i3*0.10).toFixed(2) + ')';
+        ctx.beginPath(); ctx.moveTo(w/2-ww/2, yy2); ctx.lineTo(w/2+ww/2, yy2); ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(138,63,252,0.35)';
+      [-1,1].forEach(function(s){
+        ctx.beginPath(); ctx.moveTo(w/2 + s*w*0.30, 6); ctx.lineTo(w/2 + s*w*0.08, h-6); ctx.stroke();
+      });
+      var p = ((t*0.55 + seed) % 1);
+      ctx.fillStyle = CY; ctx.globalAlpha = 0.35 + 0.65*Math.sin(Math.PI*p);
+      ctx.beginPath(); ctx.arc(w/2, 6 + p*(h-12), 2.4, 0, Math.PI*2); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  });
+});
+
+/* ══════════ resource filters ══════════ */
+
+(function(){
+  var box = document.getElementById('filters'); if(!box) return;
+  var cards = [].slice.call(document.querySelectorAll('#resGrid .res'));
+  box.addEventListener('click', function(e){
+    var b = e.target.closest('.filt'); if(!b) return;
+    [].forEach.call(box.querySelectorAll('.filt'), function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+    var f = b.getAttribute('data-f');
+    cards.forEach(function(c){
+      c.style.display = (f === 'all' || c.getAttribute('data-cat') === f) ? '' : 'none';
+    });
+  });
+})();
+
+/* ══════════ placeholder register button ══════════ */
+
+(function(){
+  var b = document.getElementById('regBtn'); if(!b) return;
+  b.addEventListener('click', function(e){
+    e.preventDefault();
+    b.firstChild.nodeValue = 'Registration form coming soon ';
+  });
+})();
+
+})();
+</script>
+
+</body></html>
