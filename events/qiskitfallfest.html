@@ -454,7 +454,46 @@ footer{ background: var(--void); }
 </section>
 
 <!-- ══════════════════ EVENTS ══════════════════ -->
+<style>
+  /* Event meta chips: theme-agnostic (uses currentColor, and --accent if your site defines it) */
+  #events .ev-meta{
+    display:flex; flex-wrap:wrap; align-items:center;
+    gap:.45rem .5rem; margin-top:.15rem;
+    font-size:.78rem; line-height:1; letter-spacing:.02em;
+  }
+  #events .ev-meta > span{
+    display:inline-flex; align-items:center; gap:.42rem;
+    padding:.45rem .75rem; border-radius:999px; white-space:nowrap;
+    border:1px solid color-mix(in srgb, currentColor 16%, transparent);
+    background:color-mix(in srgb, currentColor 4%, transparent);
+  }
+  #events .ev-meta svg{
+    width:12px; height:12px; flex:none; opacity:.6;
+    fill:none; stroke:currentColor; stroke-width:1.6;
+    stroke-linecap:round; stroke-linejoin:round;
+  }
+  #events .ev-meta .m-date{ font-weight:600 }
+  #events .ev-meta .m-venue.online::before{
+    content:""; width:6px; height:6px; border-radius:50%; flex:none;
+    background:#2fb573;
+    box-shadow:0 0 0 3px color-mix(in srgb, #2fb573 25%, transparent);
+  }
+  #events .ev-meta .kind{
+    font-size:.66rem; font-weight:600; text-transform:uppercase; letter-spacing:.09em;
+    color:var(--accent, inherit);
+    border-color:color-mix(in srgb, var(--accent, currentColor) 35%, transparent);
+    background:color-mix(in srgb, var(--accent, currentColor) 12%, transparent);
+  }
+</style>
+
 <section class="sec" id="events">
+  <!-- icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-cal" viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 7h12M5.5 1.5v3M10.5 1.5v3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 16 16"><path d="M8 14.5s4.5-4 4.5-7.5a4.5 4.5 0 0 0-9 0c0 3.5 4.5 7.5 4.5 7.5z"/><circle cx="8" cy="7" r="1.6"/></symbol>
+  </svg>
+
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -466,7 +505,7 @@ footer{ background: var(--void); }
 
     <div class="note">
       <b>Note</b>
-      <p>Dates, times and venues are being finalised with the department. Register your interest and we will email you the moment they are confirmed.</p>
+      <p>Dates, times and venues are confirmed. Register your interest and we will email you a reminder before each session.</p>
     </div>
 
     <div class="evs">
@@ -477,7 +516,12 @@ footer{ background: var(--void); }
           <h3 class="ev-t">Quantum101</h3>
           <p class="ev-d">Qubits, superposition and measurement, built from scratch and demonstrated live in Qiskit.</p>
         </div>
-        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Workshop</span></div>
+        <div class="ev-meta">
+          <span class="m-date"><svg><use href="#i-cal"/></svg>13 Oct</span>
+          <span class="m-time"><svg><use href="#i-clock"/></svg>6:30&ndash;8:00 PM IST</span>
+          <span class="m-venue"><svg><use href="#i-pin"/></svg>LC102</span>
+          <span class="kind">Workshop</span>
+        </div>
       </article>
       <article class="ev">
         <span class="ev-n">02</span>
@@ -486,7 +530,12 @@ footer{ background: var(--void); }
           <h3 class="ev-t">Guest Speaker Talk</h3>
           <p class="ev-d">Someone from the quantum industry on where the field actually is, and what has been oversold.</p>
         </div>
-        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Talk</span></div>
+        <div class="ev-meta">
+          <span class="m-date"><svg><use href="#i-cal"/></svg>14 Oct</span>
+          <span class="m-time"><svg><use href="#i-clock"/></svg>6:30&ndash;8:00 PM IST</span>
+          <span class="m-venue online">Online</span>
+          <span class="kind">Talk</span>
+        </div>
       </article>
       <article class="ev">
         <span class="ev-n">03</span>
@@ -495,16 +544,26 @@ footer{ background: var(--void); }
           <h3 class="ev-t">Professor Talk</h3>
           <p class="ev-d">An IIT Bombay faculty view of the physics under the abstraction — how a qubit is built and kept coherent.</p>
         </div>
-        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Talk</span></div>
+        <div class="ev-meta">
+          <span class="m-date"><svg><use href="#i-cal"/></svg>15 Oct</span>
+          <span class="m-time"><svg><use href="#i-clock"/></svg>7:00&ndash;8:30 PM IST</span>
+          <span class="m-venue"><svg><use href="#i-pin"/></svg>LC101</span>
+          <span class="kind">Talk</span>
+        </div>
       </article>
       <article class="ev">
         <span class="ev-n">04</span>
         <canvas class="ev-gl" data-glyph="circuit" aria-hidden="true"></canvas>
         <div>
           <h3 class="ev-t">Quantum Hackathon</h3>
-          <p class="ev-d">Teams, a problem statement, mentors, and access to IBM Quantum hardware. <a href="#resources">Prep material</a> is below.</p>
+          <p class="ev-d">Teams, a problem statement, mentors, and access to IBM Quantum hardware. 36 hours, non-stop. <a href="#resources">Prep material</a> is below.</p>
         </div>
-        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Hackathon</span></div>
+        <div class="ev-meta">
+          <span class="m-date"><svg><use href="#i-cal"/></svg>16 Oct</span>
+          <span class="m-time"><svg><use href="#i-clock"/></svg>Starts 8:00 PM IST &middot; 36 hrs</span>
+          <span class="m-venue online">Online</span>
+          <span class="kind">Hackathon</span>
+        </div>
       </article>
       <article class="ev">
         <span class="ev-n">05</span>
@@ -513,11 +572,18 @@ footer{ background: var(--void); }
           <h3 class="ev-t">Lab Visits &amp; Closing Ceremony</h3>
           <p class="ev-d">A walk through the hardware and instrumentation on campus, then results and closing remarks.</p>
         </div>
-        <div class="ev-meta"><span class="tbd">DATE</span><span class="tbd">TIME</span><span class="tbd">VENUE</span><span class="kind">Lab visit</span></div>
+        <div class="ev-meta">
+          <span class="m-date"><svg><use href="#i-cal"/></svg>18 Oct</span>
+          <span class="m-time"><svg><use href="#i-clock"/></svg>2:00&ndash;5:00 PM IST</span>
+          <span class="m-venue"><svg><use href="#i-pin"/></svg>Physics Seminar Room</span>
+          <span class="kind">Lab visit</span>
+        </div>
       </article>
     </div>
   </div>
 </section>
+
+
 
 <!-- ══════════════════ HARDWARE ══════════════════ -->
 <section class="sec" id="hardware">
