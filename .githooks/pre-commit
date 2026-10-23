@@ -1,0 +1,3 @@
+#!/bin/sh
+# Keep the homepage's built-in event cards in sync with timeline.html.
+python3 sync_homepage.py && git add index.html
