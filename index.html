@@ -32,7 +32,8 @@
   <img src="images/fibonaccicatto.png" alt="fibonaccicatto">
   <div class="club-text bottom">Physics <span class="and">club</span></div>
 
-   <div class="upcoming-events">
+   <!-- Event cards below are synced automatically from timeline.html by the script at the bottom of this page. -->
+   <div class="upcoming-events" id="home-upcoming-events">
     <h2>Upcoming Events</h2>
     <div class="event-card">
       <h3>ITC Orientation</h3>
@@ -53,56 +54,46 @@
   <div class="upcoming-events past-events">
     <h2>Past Events</h2>
     <a class="timeline-preview-link" href="timeline.html" aria-label="View the full timeline">
-      <div class="timeline-preview">
+      <div class="timeline-preview" id="home-past-events">
+        <div class="event-card">
+          <h3>QISKIT Fall Fest : An insight into Quantum Computing</h3>
+          <p class="event-date">12-16 October 2026</p>
+        </div>
+        <div class="event-card">
+          <h3>Bazinga! Maths</h3>
+          <p class="event-date">3 September 2026</p>
+        </div>
+        <div class="event-card">
+          <h3>Group Discussion on Inversion</h3>
+          <p class="event-date">19 August 2026</p>
+        </div>
         <div class="event-card">
           <h3>Chai n Why Trip</h3>
           <p class="event-date">1 April 2026</p>
-          
         </div>
         <div class="event-card">
           <h3>Integration Bee</h3>
           <p class="event-date">28 March 2026</p>
-         
         </div>
         <div class="event-card">
           <h3>SciComp GC</h3>
           <p class="event-date">18-22 March 2026</p>
-         
         </div>
         <div class="event-card">
           <h3>Physicsathon</h3>
           <p class="event-date">15 March 2026</p>
-         
         </div>
         <div class="event-card">
           <h3>Cryptogue</h3>
           <p class="event-date">13 March 2026</p>
-         
         </div>
         <div class="event-card">
           <h3>Math Talk by Prof. Manas Rachh</h3>
           <p class="event-date">12 March 2026</p>
-          
         </div>
         <div class="event-card">
           <h3>Mathathon</h3>
           <p class="event-date">14 February 2026</p>
-         
-        </div>
-        <div class="event-card">
-          <h3>Physics Talk by Prof. Hridis Pal</h3>
-          <p class="event-date">28 January 2026</p>
-         
-        </div>
-        <div class="event-card">
-          <h3>GNAANU Outreach</h3>
-          <p class="event-date">23 January 2026</p>
-        
-        </div>
-        <div class="event-card">
-          <h3>INMO Group Discussion</h3>
-          <p class="event-date">21 January 2026</p>
-         
         </div>
       </div>
     </a>
@@ -822,5 +813,48 @@ hamburger.addEventListener('click', () => {
         // init();
         // animate(0);
     </script>
+
+<script>
+// Syncs the homepage event cards with timeline.html so only the timeline needs editing.
+(function () {
+  const clean = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : '');
+
+  function makeCard(item, withDesc) {
+    const card = document.createElement('div');
+    card.className = 'event-card';
+    const h3 = document.createElement('h3');
+    h3.textContent = clean(item.querySelector('.timeline-title'));
+    const date = document.createElement('p');
+    date.className = 'event-date';
+    date.textContent = clean(item.querySelector('.timeline-date'));
+    card.append(h3, date);
+    if (withDesc) {
+      const desc = document.createElement('p');
+      desc.textContent = clean(item.querySelector('.timeline-desc'));
+      card.append(desc);
+    }
+    return card;
+  }
+
+  function fill(doc, sectionName, targetId, withDesc) {
+    const target = document.getElementById(targetId);
+    const heading = [...doc.querySelectorAll('.section-title')]
+      .find((h) => clean(h).toLowerCase() === sectionName);
+    if (!target || !heading) return;
+    const items = heading.closest('.section').querySelectorAll('.timeline-item');
+    target.querySelectorAll(':scope > .event-card').forEach((card) => card.remove());
+    items.forEach((item) => target.append(makeCard(item, withDesc)));
+  }
+
+  fetch('timeline.html', { cache: 'no-cache' })
+    .then((res) => res.text())
+    .then((html) => {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      fill(doc, 'upcoming events', 'home-upcoming-events', true);
+      fill(doc, 'past events', 'home-past-events', false);
+    })
+    .catch(() => {});
+})();
+</script>
 </body>
 </html>
